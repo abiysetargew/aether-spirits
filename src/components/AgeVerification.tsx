@@ -21,76 +21,75 @@ export default function AgeVerification() {
       
       modal.innerHTML = `
         <div style="
-          max-width: 500px;
+          max-width: 420px;
           width: 100%;
           background: linear-gradient(135deg, #0a0a0a, #111);
           border: 1px solid rgba(201,169,98,0.3);
-          border-radius: 24px;
+          border-radius: 4px;
           padding: 48px;
           text-align: center;
         ">
           <div style="
-            width: 80px;
-            height: 80px;
+            width: 64px;
+            height: 64px;
             margin: 0 auto 24px;
-            border: 2px solid #c9a962;
+            border: 1px solid rgba(201,169,98,0.5);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-          ">🍷</div>
+            font-size: 24px;
+            font-weight: bold;
+            color: #c9a962;
+          ">A</div>
           
           <h1 style="
-            font-size: 36px;
+            font-size: 24px;
             font-weight: 300;
-            letter-spacing: 0.2em;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #e8d5a3, #c9a962, #8b7355);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-          ">ETHO BEVERAGES</h1>
+            letter-spacing: 0.3em;
+            margin-bottom: 4px;
+            color: #fff;
+          ">ADEY</h1>
           
-          <p style="color: #c9a962; font-size: 12px; letter-spacing: 0.3em; margin-bottom: 32px;">LUXURY SPIRITS</p>
+          <p style="color: #c9a962; font-size: 9px; letter-spacing: 0.4em; margin-bottom: 32px;">SPIRITS</p>
           
-          <h2 style="color: #fff; font-size: 24px; font-weight: 300; margin-bottom: 16px;">
-            Age Verification Required
+          <h2 style="color: #fff; font-size: 18px; font-weight: 300; margin-bottom: 16px;">
+            Age Verification
           </h2>
           
-          <p style="color: #888; font-size: 14px; line-height: 1.7; margin-bottom: 32px;">
-            You must be 21 years of age or older to enter this website.
+          <p style="color: #666; font-size: 13px; line-height: 1.7; margin-bottom: 32px;">
+            You must be 18 years of age or older to enter this website.
           </p>
           
-          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <button id="age-yes" style="
-              padding: 16px 40px;
+              padding: 14px 32px;
               background: linear-gradient(135deg, #c9a962, #e8d5a3);
               border: none;
-              border-radius: 8px;
+              border-radius: 2px;
               color: #000;
-              font-weight: 600;
-              font-size: 14px;
-              letter-spacing: 0.1em;
+              font-weight: 500;
+              font-size: 11px;
+              letter-spacing: 0.15em;
               cursor: pointer;
               transition: all 0.3s;
-            ">I AM 21+</button>
+            ">I AM 18+</button>
             
             <button id="age-no" style="
-              padding: 16px 40px;
+              padding: 14px 32px;
               background: transparent;
-              border: 1px solid #444;
-              border-radius: 8px;
-              color: #888;
+              border: 1px solid #333;
+              border-radius: 2px;
+              color: #666;
               font-weight: 500;
-              font-size: 14px;
-              letter-spacing: 0.1em;
+              font-size: 11px;
+              letter-spacing: 0.15em;
               cursor: pointer;
               transition: all 0.3s;
-            ">UNDER 21</button>
+            ">UNDER 18</button>
           </div>
           
-          <p style="color: #444; font-size: 11px; margin-top: 24px;">
+          <p style="color: #333; font-size: 10px; margin-top: 24px;">
             Please drink responsibly.
           </p>
         </div>

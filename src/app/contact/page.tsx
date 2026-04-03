@@ -1,280 +1,187 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Users, Briefcase } from 'lucide-react';
-
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: 'Headquarters',
-    details: ['Bole Road', 'Addis Ababa, Ethiopia'],
-  },
-  {
-    icon: MapPin,
-    title: 'Factory',
-    details: ['Industrial Zone', 'Akaki Kality, Addis Ababa'],
-  },
-  {
-    icon: Phone,
-    title: 'Call Us',
-    details: ['+251 11 123 4567', '+251 98 765 4321'],
-  },
-  {
-    icon: Mail,
-    title: 'Email Us',
-    details: ['info@ethiobeverages.com', 'support@ethiobeverages.com'],
-  },
-];
-
-const departments = [
-  {
-    icon: MessageCircle,
-    title: 'Customer Support',
-    email: 'support@ethiobeverages.com',
-    description: 'Questions about products, orders, or your account.',
-  },
-  {
-    icon: Users,
-    title: 'Partnerships',
-    email: 'partners@ethiobeverages.com',
-    description: 'Wholesale, distribution, and business inquiries.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Careers',
-    email: 'careers@ethiobeverages.com',
-    description: 'Join the Ethio Beverages family.',
-  },
-];
+import Link from 'next/link';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    department: 'customer-support',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
     setSubmitted(true);
-    setIsSubmitting(false);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
   };
 
   return (
-    <div className="pt-24">
-      <section className="py-20 bg-gradient-to-b from-[#080808] to-[#050505]">
-        <div className="max-w-7xl mx-auto px-6">
+    <div className="bg-black min-h-screen pt-24">
+      {/* Hero */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-black to-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,169,98,0.08)_0%,transparent_50%)]" />
+        
+        <div className="relative max-w-7xl mx-auto px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center"
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Get in Touch</p>
-            <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl mb-6">
-              Contact <span className="gold-gradient">Us</span>
+            <span className="text-amber-500/60 text-[10px] tracking-[0.5em] uppercase">Get in Touch</span>
+            <h1 className="text-5xl lg:text-6xl font-extralight text-white mt-6 tracking-tight">
+              Contact <span className="text-amber-500/90">Us</span>
             </h1>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Have a question or want to partner with us? We&apos;d love to hear from you. 
-              Based in the heart of Addis Ababa, Ethiopia.
+            <p className="text-gray-500 mt-6 max-w-xl mx-auto font-light">
+              Have questions? We'd love to hear from you.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-20 bg-[#050505]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      {/* Contact */}
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Form */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-[family-name:var(--font-playfair)] text-3xl text-white mb-8">
-                Send Us a <span className="gold-gradient">Message</span>
-              </h2>
-
+              <h2 className="text-2xl font-extralight text-white mb-8 tracking-tight">Send a Message</h2>
+              
               {submitted ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="glass rounded-2xl p-12 text-center border border-[rgba(201,169,98,0.2)]"
+                  className="p-8 rounded-sm bg-gradient-to-b from-gray-900/30 to-transparent border border-amber-500/30 text-center"
                 >
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[rgba(201,169,98,0.2)] flex items-center justify-center">
-                    <Send size={32} className="text-[#c9a962]" />
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-amber-500/30 flex items-center justify-center">
+                    <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-4">
-                    Message Sent!
-                  </h3>
-                  <p className="text-gray-400">
-                    Thank you for reaching out. We&apos;ll get back to you soon.
-                  </p>
+                  <h3 className="text-white text-xl font-light mb-2">Message Sent!</h3>
+                  <p className="text-gray-500 font-light">We'll get back to you soon.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-gray-400 text-sm mb-2">Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 bg-[#111] border border-gray-800 rounded text-white placeholder-gray-500 focus:outline-none focus:border-[#c9a962] transition-colors"
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-400 text-sm mb-2">Email</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 bg-[#111] border border-gray-800 rounded text-white placeholder-gray-500 focus:outline-none focus:border-[#c9a962] transition-colors"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                  </div>
-
                   <div>
-                    <label className="block text-gray-400 text-sm mb-2">Department</label>
-                    <select
-                      name="department"
-                      value={formData.department}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-[#111] border border-gray-800 rounded text-white focus:outline-none focus:border-[#c9a962] transition-colors"
-                    >
-                      <option value="customer-support">Customer Support</option>
-                      <option value="partnerships">Partnerships</option>
-                      <option value="careers">Careers</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-gray-400 text-sm mb-2">Subject</label>
+                    <label className="block text-gray-500 text-xs tracking-wider uppercase mb-2">Name</label>
                     <input
                       type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-[#111] border border-gray-800 rounded text-white placeholder-gray-500 focus:outline-none focus:border-[#c9a962] transition-colors"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-800 rounded-sm text-white placeholder-gray-600 focus:outline-none focus:border-amber-500/50 transition-colors"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-gray-500 text-xs tracking-wider uppercase mb-2">Email</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-800 rounded-sm text-white placeholder-gray-600 focus:outline-none focus:border-amber-500/50 transition-colors"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-gray-500 text-xs tracking-wider uppercase mb-2">Subject</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-800 rounded-sm text-white placeholder-gray-600 focus:outline-none focus:border-amber-500/50 transition-colors"
                       placeholder="How can we help?"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-gray-400 text-sm mb-2">Message</label>
+                    <label className="block text-gray-500 text-xs tracking-wider uppercase mb-2">Message</label>
                     <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
                       required
-                      rows={6}
-                      className="w-full px-4 py-3 bg-[#111] border border-gray-800 rounded text-white placeholder-gray-500 focus:outline-none focus:border-[#c9a962] transition-colors resize-none"
-                      placeholder="Write your message..."
+                      rows={5}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-800 rounded-sm text-white placeholder-gray-600 focus:outline-none focus:border-amber-500/50 transition-colors resize-none"
+                      placeholder="Your message..."
                     />
                   </div>
-
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#c9a962] to-[#e8d5a3] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-300 disabled:opacity-50"
+                    className="w-full px-8 py-4 bg-amber-600 text-black font-medium tracking-wider uppercase text-xs rounded-sm hover:bg-amber-500 transition-colors"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={18} />
-                        Send Message
-                      </>
-                    )}
+                    Send Message
                   </button>
                 </form>
               )}
             </motion.div>
 
+            {/* Info */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="grid grid-cols-2 gap-6">
-                {contactInfo.map((info) => (
-                  <div key={info.title} className="glass rounded-xl p-6">
-                    <info.icon size={24} className="text-[#c9a962] mb-4" />
-                    <h3 className="text-white font-semibold mb-2">{info.title}</h3>
-                    {info.details.map((detail, i) => (
-                      <p key={i} className="text-gray-400 text-sm">{detail}</p>
-                    ))}
+              <div className="p-8 rounded-sm bg-gradient-to-b from-gray-900/30 to-transparent border border-gray-800/30">
+                <h3 className="text-white text-lg font-light mb-6">Contact Information</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full border border-amber-500/30 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-xs uppercase tracking-wider">Location</p>
+                      <p className="text-white font-light">Addis Ababa, Ethiopia</p>
+                    </div>
                   </div>
-                ))}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full border border-amber-500/30 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-xs uppercase tracking-wider">Email</p>
+                      <p className="text-white font-light">info@ethiobeverages.com</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="glass rounded-2xl p-8 border border-[rgba(201,169,98,0.1)]">
-                <h3 className="font-[family-name:var(--font-playfair)] text-xl text-white mb-6">
-                  Department Contacts
-                </h3>
-                <div className="space-y-6">
-                  {departments.map((dept) => (
-                    <div key={dept.title} className="border-b border-gray-800 pb-6 last:border-0 last:pb-0">
-                      <div className="flex items-center gap-3 mb-2">
-                        <dept.icon size={20} className="text-[#c9a962]" />
-                        <h4 className="text-white font-semibold">{dept.title}</h4>
-                      </div>
-                      <p className="text-gray-400 text-sm mb-2">{dept.description}</p>
-                      <a href={`mailto:${dept.email}`} className="text-[#c9a962] text-sm hover:text-[#e8d5a3] transition-colors">
-                        {dept.email}
-                      </a>
-                    </div>
+              <div className="p-8 rounded-sm bg-gradient-to-b from-gray-900/30 to-transparent border border-gray-800/30">
+                <h3 className="text-white text-lg font-light mb-6">Quick Links</h3>
+                <div className="space-y-3">
+                  {[
+                    { label: 'Collection', href: '/collection' },
+                    { label: 'Heritage', href: '/heritage' },
+                    { label: 'About', href: '/about' },
+                  ].map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="flex items-center gap-2 text-gray-400 hover:text-amber-500 text-sm font-light transition-colors group"
+                    >
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                      {link.label}
+                    </Link>
                   ))}
                 </div>
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-[#080808]">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass rounded-3xl overflow-hidden border border-[rgba(201,169,98,0.1)]"
-          >
-            <div className="h-80 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center">
-              <div className="text-center">
-                <MapPin size={48} className="text-[#c9a962] mx-auto mb-4" />
-                <p className="text-white text-xl font-semibold mb-2">Ethio Beverages</p>
-                <p className="text-gray-400">Bole Road, Addis Ababa, Ethiopia</p>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
     </div>

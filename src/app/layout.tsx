@@ -23,9 +23,9 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Ethio Beverages | Premium Ethiopian Spirits",
-  description: "Ethiopia's premier luxury spirits manufacturer. Crafting exceptional gin, cognac, and signature blends from Addis Ababa.",
-  keywords: ["Ethiopian spirits", "Ethiopian gin", "Ethiopian cognac", "Ethio Beverages", "luxury spirits", "Addis Ababa"],
+  title: "Adey Spirits | Ethio Beverages - Premium Ethiopian Spirits",
+  description: "Discover Adey - proudly Ethiopian premium spirits crafted in Addis Ababa. Ouzo, Gin, and flavored spirits that capture Ethiopian excellence.",
+  keywords: ["Adey Spirits", "Ethio Beverages", "Ethiopian spirits", "Ethiopian gin", "ouzo Ethiopia", "Addis Ababa spirits"],
 };
 
 export default function RootLayout({
