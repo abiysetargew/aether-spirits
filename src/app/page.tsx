@@ -10,35 +10,35 @@ const Scene3D = dynamic(() => import('@/components/Scene3D'), { ssr: false });
 
 const featuredProducts = [
   {
-    name: 'AETHER Gin No. 1',
-    type: 'London Dry Gin',
-    abv: '47%',
-    description: 'Infused with rare Ethiopian botanicals',
-    price: '$89',
-    image: '/placeholder-gin.jpg',
+    name: 'Heisberg BR',
+    type: 'Premium Lager',
+    abv: '6.1%',
+    description: 'Rich brown ale with caramel notes from Ethiopian highlands',
+    price: 'ETB 450',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-brown.png',
   },
   {
-    name: 'AETHER XO Cognac',
-    type: 'Extra Old',
-    abv: '40%',
-    description: 'Aged 25 years in French oak',
-    price: '$349',
-    image: '/placeholder-cognac.jpg',
+    name: 'Heisberg RD',
+    type: 'Red Lager',
+    abv: '6.1%',
+    description: 'Smooth red lager with malty Ethiopian flavor',
+    price: 'ETB 450',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-red.png',
   },
   {
-    name: 'AETHER Reserve',
-    type: 'Signature Blend',
-    abv: '45%',
-    description: 'Our master distiller\'s masterpiece',
-    price: '$199',
-    image: '/placeholder-reserve.jpg',
+    name: 'Heisberg BL',
+    type: 'Blonde Ale',
+    abv: '6.1%',
+    description: 'Crisp golden blonde ale, our flagship brew',
+    price: 'ETB 450',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-blue-X2PSV6.png',
   },
 ];
 
 const stats = [
-  { value: '1892', label: 'Year Founded' },
-  { value: '50+', label: 'Awards Won' },
-  { value: '30+', label: 'Countries' },
+  { value: '2021', label: 'Year Founded' },
+  { value: '10+', label: 'Awards Won' },
+  { value: '15+', label: 'Countries' },
   { value: '100%', label: 'Handcrafted' },
 ];
 
@@ -74,7 +74,7 @@ export default function HomePage() {
                 transition={{ delay: 0.7 }}
                 className="text-[#c9a962] text-sm tracking-[0.4em] uppercase mb-4"
               >
-                Est. 1892
+                Est. 2021 • Addis Ababa
               </motion.p>
               
               <motion.h1
@@ -83,9 +83,9 @@ export default function HomePage() {
                 transition={{ delay: 0.9 }}
                 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl lg:text-8xl mb-6 leading-none"
               >
-                <span className="gold-gradient">AETHER</span>
+                <span className="gold-gradient">HEISBERG</span>
                 <br />
-                <span className="text-white text-4xl md:text-5xl lg:text-6xl">Spirits</span>
+                <span className="text-white text-4xl md:text-5xl lg:text-6xl">Beer</span>
               </motion.h1>
               
               <motion.p
@@ -94,8 +94,8 @@ export default function HomePage() {
                 transition={{ delay: 1.1 }}
                 className="text-gray-400 text-lg mb-8 leading-relaxed"
               >
-                Where ancient Ethiopian traditions meet modern distilling excellence. 
-                Experience spirits crafted with passion, precision, and centuries of heritage.
+                Ethiopia&apos;s premium craft beer, brewed with passion in Addis Ababa. 
+                Born from Ethiopian highlands, crafted for the world. The taste that makes you feel awesome.
               </motion.p>
 
               <motion.div
@@ -108,7 +108,7 @@ export default function HomePage() {
                   href="/spirits"
                   className="group px-8 py-4 bg-gradient-to-r from-[#c9a962] via-[#e8d5a3] to-[#c9a962] text-black font-semibold tracking-wider uppercase rounded flex items-center gap-2 hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-500"
                 >
-                  Explore Collection
+                  Explore Beers
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
@@ -116,7 +116,7 @@ export default function HomePage() {
                   className="group px-8 py-4 border border-[rgba(201,169,98,0.5)] text-[#c9a962] font-medium tracking-wider uppercase rounded flex items-center gap-2 hover:bg-[rgba(201,169,98,0.1)] transition-all duration-300"
                 >
                   <Play size={16} />
-                  Virtual Tour
+                  Our Story
                 </Link>
               </motion.div>
             </motion.div>
@@ -181,10 +181,10 @@ export default function HomePage() {
           >
             <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">The Collection</p>
             <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl mb-6">
-              Our <span className="gold-gradient">Finest</span> Spirits
+              Our <span className="gold-gradient">Premium</span> Beers
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Each bottle tells a story of heritage, craftsmanship, and the relentless pursuit of perfection.
+              Crafted with the finest ingredients from Ethiopian highlands. Each bottle delivers consistent quality and exceptional taste.
             </p>
           </motion.div>
 
@@ -202,7 +202,11 @@ export default function HomePage() {
                 
                 <div className="glass rounded-2xl p-8 relative overflow-hidden">
                   <div className="h-64 bg-gradient-to-b from-[rgba(201,169,98,0.05)] to-transparent rounded-xl mb-6 flex items-center justify-center">
-                    <div className="w-24 h-48 border border-[rgba(201,169,98,0.3)] rounded-lg bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a]" />
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="h-full w-auto object-contain"
+                    />
                   </div>
 
                   <div className="flex items-center gap-2 mb-2">
@@ -242,7 +246,7 @@ export default function HomePage() {
               href="/spirits"
               className="inline-flex items-center gap-2 px-8 py-4 border border-[rgba(201,169,98,0.3)] text-[#c9a962] font-medium tracking-wider uppercase rounded hover:bg-[rgba(201,169,98,0.1)] transition-all duration-300"
             >
-              View All Spirits <ArrowRight size={18} />
+              View All Beers <ArrowRight size={18} />
             </Link>
           </motion.div>
         </div>
@@ -260,17 +264,16 @@ export default function HomePage() {
             >
               <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Heritage</p>
               <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-6 leading-tight">
-                A Legacy of <span className="gold-gradient">Excellence</span>
+                Born in <span className="gold-gradient">Ethiopia</span>
               </h2>
               <p className="text-gray-400 mb-6 leading-relaxed">
-                Founded in the highlands of Ethiopia in 1892, AETHER Spirits has been perfecting 
-                the art of distillation for over a century. Our unique approach combines 
-                traditional Ethiopian techniques with modern innovation.
+                Founded in October 2021 by visionary entrepreneurs <strong className="text-white">Sisay H.W</strong> and <strong className="text-white">Alula Setarge</strong>, 
+                Ethio Beverages was born in the heart of Addis Ababa with a simple mission: to bring the world 
+                exceptional beverages that capture Ethiopian essence.
               </p>
               <p className="text-gray-400 mb-8 leading-relaxed">
-                From the selection of botanicals grown in our highland estates to the careful 
-                aging in hand-selected oak barrels, every step of our process reflects our 
-                commitment to creating spirits of uncompromising quality.
+                From our state-of-the-art facility in the Industrial Zone, Akaki Kality, we craft premium beers 
+                that honor Ethiopian heritage while meeting international quality standards.
               </p>
               <Link
                 href="/heritage"
@@ -289,8 +292,12 @@ export default function HomePage() {
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] via-[#111] to-[#0a0a0a] flex items-center justify-center relative">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(201,169,98,0.2),transparent_60%)]" />
-                  <div className="w-40 h-64 border-2 border-[rgba(201,169,98,0.5)] rounded-xl relative">
-                    <div className="absolute inset-4 border border-[rgba(201,169,98,0.3)] rounded-lg" />
+                  <div className="text-center">
+                    <div className="w-32 h-32 mx-auto mb-4 rounded-full border-2 border-[rgba(201,169,98,0.5)] flex items-center justify-center">
+                      <span className="font-[family-name:var(--font-playfair)] text-5xl gold-gradient">EB</span>
+                    </div>
+                    <p className="text-[#c9a962] tracking-widest">ETHIO BEVERAGES</p>
+                    <p className="text-gray-500 text-sm mt-2">Addis Ababa, Ethiopia</p>
                   </div>
                 </div>
               </div>
@@ -310,7 +317,7 @@ export default function HomePage() {
           >
             <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Craftsmanship</p>
             <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl mb-6">
-              The Distillery <span className="gold-gradient">Experience</span>
+              The Heisberg <span className="gold-gradient">Difference</span>
             </h2>
           </motion.div>
 
@@ -318,18 +325,18 @@ export default function HomePage() {
             {[
               {
                 icon: Wine,
-                title: 'Select Botanicals',
-                description: 'Hand-picked ingredients from our highland estates and around the world.',
+                title: 'Premium Ingredients',
+                description: 'Hand-selected Ethiopian barley and hops from the highlands.',
               },
               {
                 icon: Award,
-                title: 'Artisan Distillation',
-                description: 'Small-batch copper pot stills operated by master distillers.',
+                title: 'Artisan Brewing',
+                description: 'Small-batch brewing by master brewers with decades of experience.',
               },
               {
                 icon: Globe,
-                title: 'Patient Aging',
-                description: 'Years of maturation in French oak barrels for ultimate complexity.',
+                title: 'International Quality',
+                description: 'Meeting global standards while celebrating Ethiopian character.',
               },
             ].map((feature, index) => (
               <motion.div
@@ -367,10 +374,10 @@ export default function HomePage() {
           >
             <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Newsletter</p>
             <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-6">
-              Join the <span className="gold-gradient">AETHER</span> Circle
+              Join the <span className="gold-gradient">Heisberg</span> Family
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto mb-8">
-              Be the first to know about limited releases, exclusive events, and the art of fine spirits.
+              Be the first to know about new releases, exclusive offers, and the world of Ethiopian craft beer.
             </p>
             
             <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">

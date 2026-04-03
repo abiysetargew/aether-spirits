@@ -52,11 +52,11 @@ export default function Navigation() {
               transition={{ duration: 0.5 }}
               className="w-10 h-10 border-2 border-[#c9a962] rounded-full flex items-center justify-center"
             >
-              <span className="text-[#c9a962] font-bold text-lg">A</span>
+              <span className="text-[#c9a962] font-bold text-lg">EB</span>
             </motion.div>
             <div>
               <h1 className="font-[family-name:var(--font-playfair)] text-2xl tracking-wider gold-gradient">
-                AETHER
+                HEISBERG
               </h1>
             </div>
           </Link>

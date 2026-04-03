@@ -55,14 +55,14 @@ export default function Footer() {
           >
             <Link href="/" className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 border-2 border-[#c9a962] rounded-full flex items-center justify-center">
-                <span className="text-[#c9a962] font-bold text-lg">A</span>
+                <span className="text-[#c9a962] font-bold text-lg">EB</span>
               </div>
               <h2 className="font-[family-name:var(--font-playfair)] text-2xl tracking-wider gold-gradient">
-                AETHER
+                HEISBERG
               </h2>
             </Link>
             <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-              Crafting luxury spirits since 1892. The essence of excellence in every drop.
+              Premium Ethiopian craft beer brewed in Addis Ababa. The taste that makes you feel awesome.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (

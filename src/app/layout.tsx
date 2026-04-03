@@ -23,9 +23,9 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "AETHER Spirits | Luxury Artisan Spirits",
-  description: "Discover the essence of luxury with AETHER Spirits. Premium gin, cognac, and signature blends crafted for the discerning connoisseur.",
-  keywords: ["luxury spirits", "premium gin", "cognac", "artisan spirits", "luxury alcohol"],
+  title: "Heisberg Beer | Premium Ethiopian Craft Beer",
+  description: "Discover Heisberg premium craft beers brewed in Addis Ababa, Ethiopia. The taste that makes you feel awesome.",
+  keywords: ["Ethiopian beer", "craft beer", "Heisberg", "premium beer", "Addis Ababa"],
 };
 
 export default function RootLayout({

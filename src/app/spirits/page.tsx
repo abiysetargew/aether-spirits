@@ -8,83 +8,122 @@ import { ArrowRight, Filter, Star } from 'lucide-react';
 const products = [
   {
     id: 1,
-    name: 'AETHER Gin No. 1',
-    type: 'gin',
-    category: 'Gin',
-    subcategory: 'London Dry',
-    abv: '47%',
-    description: 'Our flagship gin, distilled with hand-selected Ethiopian juniper and 12 rare botanicals.',
-    price: 89,
-    rating: 4.9,
-    image: '/placeholder.jpg',
+    name: 'Heisberg BR',
+    type: 'lager',
+    category: 'Premium',
+    subcategory: 'Brown Ale',
+    abv: '6.1%',
+    ibu: 60,
+    og: '1.102',
+    description: 'Rich brown ale with caramel notes, brewed with Ethiopian barley.',
+    price: 450,
+    rating: 4.8,
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-brown.png',
     badge: 'Bestseller',
   },
   {
     id: 2,
-    name: 'AETHER Gin Reserve',
-    type: 'gin',
-    category: 'Gin',
-    subcategory: 'Old Tom',
-    abv: '45%',
-    description: 'A sweeter, more complex gin aged in oak barrels for unprecedented depth.',
-    price: 129,
-    rating: 4.8,
-    image: '/placeholder.jpg',
+    name: 'Heisberg RD',
+    type: 'lager',
+    category: 'Premium',
+    subcategory: 'Red Lager',
+    abv: '6.1%',
+    ibu: 60,
+    og: '1.102',
+    description: 'Smooth red lager with malty Ethiopian flavor profile.',
+    price: 450,
+    rating: 4.7,
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-red.png',
   },
   {
     id: 3,
-    name: 'AETHER XO Cognac',
-    type: 'cognac',
-    category: 'Cognac',
-    subcategory: 'XO',
-    abv: '40%',
-    description: 'Extra Old cognac aged 25 years in Limousin oak. Pure elegance in a bottle.',
-    price: 349,
-    rating: 5.0,
-    image: '/placeholder.jpg',
-    badge: 'Limited',
+    name: 'Heisberg BL',
+    type: 'ale',
+    category: 'Premium',
+    subcategory: 'Blonde',
+    abv: '6.1%',
+    ibu: 60,
+    og: '1.102',
+    description: 'Crisp golden blonde ale, our flagship brew.',
+    price: 450,
+    rating: 4.9,
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-blue-X2PSV6.png',
+    badge: 'Popular',
   },
   {
     id: 4,
-    name: 'AETHER VSOP',
-    type: 'cognac',
-    category: 'Cognac',
-    subcategory: 'VSOP',
-    abv: '40%',
-    description: 'Very Superior Old Pale, aged 12 years. Perfect balance of fruit and oak.',
-    price: 179,
-    rating: 4.7,
-    image: '/placeholder.jpg',
+    name: 'Heisberg GR',
+    type: 'cider',
+    category: 'Premium',
+    subcategory: 'Green',
+    abv: '6.1%',
+    ibu: 60,
+    og: '1.102',
+    description: 'Refreshing green apple cider with crisp finish.',
+    price: 450,
+    rating: 4.6,
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-green-QRHPVB6.png',
   },
   {
     id: 5,
-    name: 'AETHER Signature Blend',
-    type: 'blend',
-    category: 'Signature',
-    subcategory: 'Blend',
-    abv: '45%',
-    description: 'Our master distiller\'s personal creation. A harmonious fusion of gin and cognac.',
-    price: 199,
-    rating: 4.9,
-    image: '/placeholder.jpg',
-    badge: 'Exclusive',
+    name: 'Heisberg SM Black',
+    type: 'small',
+    category: 'Small Bottle',
+    subcategory: 'Black',
+    abv: '6.5%',
+    ibu: 60,
+    og: '1.104',
+    description: 'Bold dark brew in convenient small bottle format.',
+    price: 280,
+    rating: 4.8,
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/black-small-829HCTV.png',
   },
   {
     id: 6,
-    name: 'AETHER Midnight',
-    type: 'blend',
-    category: 'Signature',
-    subcategory: 'Dark',
-    abv: '50%',
-    description: 'A bold, midnight-hued spirit with notes of espresso and dark chocolate.',
-    price: 159,
-    rating: 4.6,
-    image: '/placeholder.jpg',
+    name: 'Heisberg SM Brown',
+    type: 'small',
+    category: 'Small Bottle',
+    subcategory: 'Brown',
+    abv: '6.5%',
+    ibu: 60,
+    og: '1.104',
+    description: 'Warm nutty flavor in every sip.',
+    price: 280,
+    rating: 4.7,
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/brownn-small-829HCTV.png',
+  },
+  {
+    id: 7,
+    name: 'Heisberg SM Green',
+    type: 'small',
+    category: 'Small Bottle',
+    subcategory: 'Green',
+    abv: '6.5%',
+    ibu: 60,
+    og: '1.104',
+    description: 'Light citrus finish, perfect for casual moments.',
+    price: 280,
+    rating: 4.5,
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-green.png',
+  },
+  {
+    id: 8,
+    name: 'Heisberg SM Gold',
+    type: 'small',
+    category: 'Small Bottle',
+    subcategory: 'Gold',
+    abv: '6.5%',
+    ibu: 60,
+    og: '1.104',
+    description: 'Classic golden taste loved by all.',
+    price: 280,
+    rating: 4.8,
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beer-gold.png',
   },
 ];
 
-const categories = ['All', 'Gin', 'Cognac', 'Signature'];
-const subcategories = ['All', 'London Dry', 'Old Tom', 'XO', 'VSOP', 'Blend', 'Dark'];
+const categories = ['All', 'Premium', 'Small Bottle'];
+const subcategories = ['All', 'Brown Ale', 'Red Lager', 'Blonde', 'Green', 'Black', 'Gold'];
 
 export default function SpiritsPage() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -93,8 +132,8 @@ export default function SpiritsPage() {
 
   const filteredProducts = products.filter((product) => {
     const categoryMatch = activeCategory === 'All' || product.category === activeCategory;
-    const subcategoryMatch = activeSubcategory === 'All' || product.subcategory === activeSubcategory;
-    return categoryMatch && subcategoryMatch;
+    const subcategoryMatch = activeSubcategory === 'All' || product.subcategory === subcategoryMatch;
+    return categoryMatch && (activeSubcategory === 'All' || product.subcategory === activeSubcategory);
   });
 
   return (
@@ -106,13 +145,13 @@ export default function SpiritsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">The Collection</p>
+            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Our Collection</p>
             <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl mb-6">
-              Our <span className="gold-gradient">Spirits</span>
+              <span className="gold-gradient">Heisberg</span> Beers
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Discover our curated selection of luxury gins, cognacs, and signature blends. 
-              Each bottle is a testament to craftsmanship and heritage.
+              Discover our curated selection of premium Ethiopian craft beers. 
+              Each bottle is crafted with passion and delivers consistent quality.
             </p>
           </motion.div>
         </div>
@@ -175,7 +214,7 @@ export default function SpiritsPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -185,10 +224,12 @@ export default function SpiritsPage() {
                 className="group"
               >
                 <div className="glass rounded-2xl overflow-hidden hover:border-[rgba(201,169,98,0.3)] transition-all duration-500">
-                  <div className="relative h-80 bg-gradient-to-b from-[rgba(201,169,98,0.05)] to-[#0a0a0a] flex items-center justify-center">
-                    <div className="w-28 h-56 border border-[rgba(201,169,98,0.4)] rounded-xl bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] relative">
-                      <div className="absolute inset-2 border border-[rgba(201,169,98,0.2)] rounded-lg" />
-                    </div>
+                  <div className="relative h-72 bg-gradient-to-b from-[rgba(201,169,98,0.05)] to-[#0a0a0a] flex items-center justify-center p-6">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
                     
                     {product.badge && (
                       <div className="absolute top-4 right-4 px-3 py-1 bg-[#c9a962] text-black text-xs font-bold uppercase rounded">
@@ -216,9 +257,24 @@ export default function SpiritsPage() {
                       {product.description}
                     </p>
 
+                    <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+                      <div className="bg-[rgba(201,169,98,0.1)] rounded p-2">
+                        <p className="text-[10px] text-gray-500 uppercase">ABV</p>
+                        <p className="text-sm font-semibold text-[#c9a962]">{product.abv}</p>
+                      </div>
+                      <div className="bg-[rgba(201,169,98,0.1)] rounded p-2">
+                        <p className="text-[10px] text-gray-500 uppercase">IBU</p>
+                        <p className="text-sm font-semibold text-[#c9a962]">{product.ibu}</p>
+                      </div>
+                      <div className="bg-[rgba(201,169,98,0.1)] rounded p-2">
+                        <p className="text-[10px] text-gray-500 uppercase">OG</p>
+                        <p className="text-sm font-semibold text-[#c9a962]">{product.og}</p>
+                      </div>
+                    </div>
+
                     <div className="flex items-center justify-between pt-4 border-t border-gray-800">
                       <div>
-                        <span className="text-2xl font-semibold text-white">${product.price}</span>
+                        <span className="text-2xl font-semibold text-white">ETB {product.price}</span>
                       </div>
                       <Link
                         href={`/shop/${product.id}`}
@@ -244,17 +300,16 @@ export default function SpiritsPage() {
             className="glass rounded-3xl p-12 md:p-16 text-center border border-[rgba(201,169,98,0.1)]"
           >
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl mb-6">
-              Looking for <span className="gold-gradient">Something Special</span>?
+              Experience the <span className="gold-gradient">Heisberg</span> Taste
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto mb-8">
-              Explore our limited editions and exclusive releases. These rare bottles are crafted 
-              in small quantities for the true connoisseur.
+              The taste that makes you feel awesome. Visit us or find Heisberg at a retailer near you.
             </p>
             <Link
-              href="/shop/limited"
+              href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#c9a962] to-[#e8d5a3] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-300"
             >
-              Explore Limited Editions <ArrowRight size={18} />
+              Find a Retailer <ArrowRight size={18} />
             </Link>
           </motion.div>
         </div>

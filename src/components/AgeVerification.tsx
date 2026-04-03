@@ -50,10 +50,10 @@ export default function AgeVerification() {
                 transition={{ delay: 0.5 }}
               >
                 <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl gold-gradient mb-2">
-                  AETHER
+                  HEISBERG
                 </h1>
                 <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-8">
-                  Luxury Spirits
+                  Premium Ethiopian Beer
                 </p>
               </motion.div>
 

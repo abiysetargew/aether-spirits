@@ -10,50 +10,50 @@ const processSteps = [
     number: '01',
     title: 'Water Source',
     icon: Droplets,
-    description: 'Pure highland spring water, filtered through volcanic rock for over 200 years.',
-    detail: 'Our water originates from the Ethiopian highlands at 3,000 meters elevation, naturally filtered through ancient volcanic rock formations.',
+    description: 'Pure Ethiopian highland water, filtered through volcanic rock.',
+    detail: 'Our water originates from Ethiopian highland springs, naturally filtered through ancient volcanic rock formations, giving our beers their unique mineral profile.',
   },
   {
     number: '02',
-    title: 'Botanical Selection',
+    title: 'Ingredient Selection',
     icon: Wind,
-    description: 'Hand-picked botanicals from our highland estates and around the world.',
-    detail: 'From Ethiopian juniper berries to Mediterranean herbs, each botanical is sourced at peak ripeness and processed within 24 hours.',
+    description: 'Hand-selected Ethiopian barley and premium hops.',
+    detail: 'From Ethiopian barley fields to premium imported hops, each ingredient is sourced at peak quality and processed within 24 hours of delivery.',
   },
   {
     number: '03',
-    title: 'Copper Distillation',
+    title: 'Brewing Process',
     icon: Flame,
-    description: 'Traditional copper pot stills operated by master distillers.',
-    detail: 'Our century-old copper stills are charged with carefully selected ingredients and slowly distilled to capture every nuance of flavor.',
+    description: 'State-of-the-art brewing equipment operated by expert brewers.',
+    detail: 'Our modern facility in Akaki Kality uses the latest brewing technology, guided by master brewers with decades of combined experience.',
   },
   {
     number: '04',
-    title: 'Patient Aging',
+    title: 'Quality Control',
     icon: Calendar,
-    description: 'Years of maturation in hand-selected oak barrels.',
-    detail: 'From 3 years for our gin to 25 years for our XO cognac, each spirit is aged until our master taster deems it perfect.',
+    description: 'Rigorous testing at every stage of production.',
+    detail: 'From raw materials to final packaging, every batch undergoes comprehensive quality testing to ensure consistent excellence.',
   },
 ];
 
 const features = [
   {
-    title: 'Highland Estate',
-    location: 'Ethiopia',
-    description: '3,000 meters above sea level',
-    image: '/placeholder.jpg',
+    title: 'Headquarters',
+    location: 'Addis Ababa',
+    description: 'Bole Road, Addis Ababa',
+    icon: MapPin,
   },
   {
-    title: 'Aging Cellars',
-    location: 'France',
-    description: 'Limousin oak barrels',
-    image: '/placeholder.jpg',
+    title: 'Production Facility',
+    location: 'Akaki Kality',
+    description: 'Industrial Zone, Addis Ababa',
+    icon: Droplets,
   },
   {
-    title: 'Bottling Facility',
-    location: 'California',
-    description: 'Small-batch perfection',
-    image: '/placeholder.jpg',
+    title: 'Quality Lab',
+    location: 'Addis Ababa',
+    description: 'State-of-the-art testing',
+    icon: Flame,
   },
 ];
 
@@ -84,14 +84,14 @@ export default function DistilleryPage() {
               className="max-w-3xl"
             >
               <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">
-                The Art of Distillation
+                Made in Ethiopia
               </p>
               <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl mb-6">
-                Our <span className="gold-gradient">Distillery</span>
+                Our <span className="gold-gradient">Facility</span>
               </h1>
               <p className="text-gray-400 text-xl leading-relaxed">
-                A pilgrimage site for spirits enthusiasts. Where tradition meets innovation, 
-                and every drop tells a story of craftsmanship passed down through generations.
+                State-of-the-art brewing facilities in the heart of Addis Ababa. 
+                Where Ethiopian tradition meets modern brewing excellence.
               </p>
             </motion.div>
           </div>
@@ -111,9 +111,8 @@ export default function DistilleryPage() {
                 From <span className="gold-gradient">Ingredient</span> to <span className="gold-gradient">Bottle</span>
               </h2>
               <p className="text-gray-400 leading-relaxed mb-8">
-                Our meticulous process combines time-honored techniques with modern precision. 
-                Each step is carefully monitored by our master distillers to ensure 
-                uncompromising quality in every batch.
+                Our meticulous brewing process combines time-honored techniques with modern precision. 
+                Each step is carefully monitored to ensure consistent quality in every batch.
               </p>
               <Link
                 href="/contact"
@@ -164,9 +163,9 @@ export default function DistilleryPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Our Facilities</p>
+            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Our Locations</p>
             <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl">
-              Three <span className="gold-gradient">Continents</span>, One Vision
+              Proudly <span className="gold-gradient">Ethiopian</span>
             </h2>
           </motion.div>
 
@@ -180,20 +179,16 @@ export default function DistilleryPage() {
                 transition={{ delay: index * 0.2 }}
                 className="group"
               >
-                <div className="relative h-80 rounded-2xl overflow-hidden mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(201,169,98,0.1),transparent_70%)]" />
-                  
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                    <div className="flex items-center gap-2 text-[#c9a962] text-sm mb-2">
-                      <MapPin size={14} />
-                      {feature.location}
-                    </div>
-                    <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm">{feature.description}</p>
+                <div className="glass rounded-2xl p-8 border border-[rgba(201,169,98,0.1)] hover:border-[rgba(201,169,98,0.3)] transition-all duration-300">
+                  <feature.icon size={48} className="text-[#c9a962] mb-6" />
+                  <div className="flex items-center gap-2 text-[#c9a962] text-sm mb-2">
+                    <MapPin size={14} />
+                    {feature.location}
                   </div>
+                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -210,24 +205,18 @@ export default function DistilleryPage() {
             className="glass rounded-3xl p-12 md:p-16 border border-[rgba(201,169,98,0.1)] text-center"
           >
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl mb-6">
-              Experience the <span className="gold-gradient">Distillery</span> in Person
+              Visit <span className="gold-gradient">Us</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-              Join us for an exclusive guided tour of our facilities. Sample our spirits, 
-              meet our master distillers, and discover the secrets behind our award-winning spirits.
+              Experience our facilities firsthand. Contact us to schedule a tour of our brewing facility 
+              in Addis Ababa.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/visit"
+                href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#c9a962] to-[#e8d5a3] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-300"
               >
-                Book a Tour <ArrowRight size={18} />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-[rgba(201,169,98,0.5)] text-[#c9a962] font-medium tracking-wider uppercase rounded hover:bg-[rgba(201,169,98,0.1)] transition-all duration-300"
-              >
-                Contact Us
+                Contact Us <ArrowRight size={18} />
               </Link>
             </div>
           </motion.div>

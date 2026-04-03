@@ -3,56 +3,71 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Quote, Users, Award, Globe } from 'lucide-react';
+import { ArrowRight, Quote, Users, Award, Globe, Heart } from 'lucide-react';
 
 const timeline = [
   {
-    year: '1892',
+    year: 'October 2021',
     title: 'The Beginning',
-    description: 'Emperor Menelik II grants permission to the Assefa family to establish Ethiopia\'s first modern distillery.',
+    description: 'Sisay H.W and Alula Setarge found Ethio Beverages in Addis Ababa with a vision to create world-class beverages.',
   },
   {
-    year: '1923',
-    title: 'Royal Recognition',
-    description: 'AETHER becomes the official supplier to the Imperial Court of Ethiopia.',
+    year: '2022',
+    title: 'Heisberg Launch',
+    description: 'Launch of the Heisberg beer line, featuring four distinct premium varieties.',
   },
   {
-    year: '1974',
-    title: 'A New Era',
-    description: 'Despite political upheaval, the distillery preserves its traditional methods and equipment.',
+    year: '2023',
+    title: 'Small Bottle Line',
+    description: 'Introduction of the convenient small bottle format for on-the-go enjoyment.',
   },
   {
-    year: '1991',
+    year: '2024',
+    title: 'Award Recognition',
+    description: 'Heisberg beers win multiple accolades at African beverage competitions.',
+  },
+  {
+    year: '2025',
     title: 'Global Expansion',
-    description: 'Following economic reforms, AETHER begins exporting to Europe and America.',
-  },
-  {
-    year: '2010',
-    title: 'Modern Renaissance',
-    description: 'A new generation of the Assefa family introduces innovative techniques while honoring tradition.',
+    description: 'Heisberg begins exporting to neighboring East African countries.',
   },
   {
     year: 'Today',
-    title: 'World-Class Excellence',
-    description: 'AETHER spirits are now enjoyed in over 30 countries, winning 50+ international awards.',
+    title: 'Growing Strong',
+    description: 'Ethio Beverages continues to grow, bringing Ethiopian craft beer to the world.',
   },
 ];
 
 const values = [
   {
-    icon: Users,
-    title: 'Family Legacy',
-    description: 'Four generations of distillers, each adding their chapter to our story.',
+    icon: Heart,
+    title: 'Pride in Origin (Adey)',
+    description: 'Honoring Ethiopian heritage in every product we create.',
   },
   {
     icon: Award,
-    title: 'Uncompromising Quality',
-    description: 'Every batch meets our exacting standards before earning the AETHER name.',
+    title: 'Quality First',
+    description: 'Uncompromising excellence in every bottle we produce.',
   },
   {
     icon: Globe,
-    title: 'Ethiopian Soul',
-    description: 'Our highland heritage infuses every spirit with a taste of Ethiopia.',
+    title: 'Ethiopian to the World',
+    description: 'Sharing Ethiopian craftsmanship with global audiences.',
+  },
+];
+
+const founders = [
+  {
+    name: 'Sisay H.W',
+    initials: 'SH',
+    role: 'Co-Founder',
+    description: 'Visionary leader driving innovation in the Ethiopian beverage industry.',
+  },
+  {
+    name: 'Alula Setarge',
+    initials: 'AS',
+    role: 'Co-Founder',
+    description: 'Strategic mind behind brand development and market expansion.',
   },
 ];
 
@@ -83,14 +98,14 @@ export default function HeritagePage() {
               className="max-w-3xl"
             >
               <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">
-                Since 1892
+                Since October 2021
               </p>
               <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl mb-6">
                 Our <span className="gold-gradient">Heritage</span>
               </h1>
               <p className="text-gray-400 text-xl leading-relaxed">
-                A story of resilience, tradition, and the relentless pursuit of perfection. 
-                Four generations of the Assefa family have crafted spirits that capture the soul of Ethiopia.
+                Born in the heart of Addis Ababa, Ethio Beverages represents the fusion of 
+                Ethiopian entrepreneurial spirit and world-class brewing craftsmanship.
               </p>
             </motion.div>
           </div>
@@ -108,12 +123,14 @@ export default function HeritagePage() {
               <div className="relative">
                 <div className="aspect-square rounded-2xl overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] via-[#111] to-[#0a0a0a] flex items-center justify-center">
-                    <div className="w-32 h-32 border-2 border-[rgba(201,169,98,0.5)] rounded-full flex items-center justify-center">
-                      <span className="font-[family-name:var(--font-playfair)] text-5xl gold-gradient">1892</span>
+                    <div className="w-40 h-40 rounded-full border-2 border-[rgba(201,169,98,0.5)] flex items-center justify-center">
+                      <span className="font-[family-name:var(--font-playfair)] text-5xl gold-gradient">EB</span>
                     </div>
                   </div>
                 </div>
-                <div className="absolute -bottom-6 -right-6 w-24 h-24 border border-[rgba(201,169,98,0.2)] rounded-xl" />
+                <div className="absolute -bottom-6 -right-6 w-24 h-24 border border-[rgba(201,169,98,0.2)] rounded-xl flex items-center justify-center">
+                  <span className="text-[#c9a962] text-sm font-bold">2021</span>
+                </div>
               </div>
             </motion.div>
 
@@ -124,11 +141,11 @@ export default function HeritagePage() {
             >
               <Quote className="w-12 h-12 text-[#c9a962] mb-6" />
               <p className="font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-white mb-6 leading-relaxed italic">
-                "The art of distillation is not merely about creating spirits. 
-                It is about capturing the essence of a land, a people, and a tradition."
+                &quot;We set out to create something extraordinary — beverages that capture 
+                the essence of Ethiopia and share it with the world.&quot;
               </p>
-              <p className="text-[#c9a962] mb-1">—Kebede Assefa, Founder</p>
-              <p className="text-gray-500 text-sm">Founder, AETHER Spirits</p>
+              <p className="text-[#c9a962] mb-1">— Founders&apos; Vision</p>
+              <p className="text-gray-500 text-sm">Ethio Beverages</p>
             </motion.div>
           </div>
         </div>
@@ -142,9 +159,47 @@ export default function HeritagePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
+            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Meet the Visionaries</p>
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl">
+              The <span className="gold-gradient">Founders</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+            {founders.map((founder, index) => (
+              <motion.div
+                key={founder.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="glass rounded-2xl p-8 text-center border border-[rgba(201,169,98,0.1)]"
+              >
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#c9a962] to-[#8b7355] flex items-center justify-center">
+                  <span className="text-3xl font-bold text-black">{founder.initials}</span>
+                </div>
+                <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-2">
+                  {founder.name}
+                </h3>
+                <p className="text-[#c9a962] font-medium mb-4">{founder.role}</p>
+                <p className="text-gray-400 text-sm">{founder.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-[#050505]">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Our Journey</p>
             <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl">
-              A Century of <span className="gold-gradient">Excellence</span>
+              From Vision to <span className="gold-gradient">Reality</span>
             </h2>
           </motion.div>
 
@@ -164,7 +219,7 @@ export default function HeritagePage() {
                   }`}
                 >
                   <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                    <span className="text-[#c9a962] text-4xl font-[family-name:var(--font-playfair)]">{event.year}</span>
+                    <span className="text-[#c9a962] text-2xl font-[family-name:var(--font-playfair)]">{event.year}</span>
                     <h3 className="text-xl text-white mt-2 mb-2">{event.title}</h3>
                     <p className="text-gray-400">{event.description}</p>
                   </div>
@@ -179,7 +234,7 @@ export default function HeritagePage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#050505]">
+      <section className="py-24 bg-[#080808]">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -216,7 +271,7 @@ export default function HeritagePage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#080808]">
+      <section className="py-24 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -225,16 +280,16 @@ export default function HeritagePage() {
             className="glass rounded-3xl p-12 md:p-16 border border-[rgba(201,169,98,0.1)] text-center"
           >
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl mb-6">
-              Become Part of Our <span className="gold-gradient">Story</span>
+              Experience <span className="gold-gradient">Heisberg</span> Today
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-              Explore our spirits and discover why AETHER has been synonymous with excellence for over a century.
+              Discover the taste that makes you feel awesome. Find Heisberg beers at retailers across Ethiopia.
             </p>
             <Link
               href="/spirits"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#c9a962] to-[#e8d5a3] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-300"
             >
-              Explore Our Spirits <ArrowRight size={18} />
+              Explore Our Beers <ArrowRight size={18} />
             </Link>
           </motion.div>
         </div>

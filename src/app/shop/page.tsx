@@ -8,71 +8,69 @@ import { ShoppingBag, Heart, Star, ArrowRight, Plus, Minus } from 'lucide-react'
 const products = [
   {
     id: 1,
-    name: 'AETHER Gin No. 1',
-    price: 89,
+    name: 'Heisberg BR',
+    price: 450,
     originalPrice: null,
-    rating: 4.9,
+    rating: 4.8,
     reviews: 127,
-    category: 'Gin',
+    category: 'Premium',
     badge: 'Bestseller',
-    image: '/placeholder.jpg',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-brown.png',
   },
   {
     id: 2,
-    name: 'AETHER Gin Reserve',
-    price: 129,
-    originalPrice: 159,
-    rating: 4.8,
+    name: 'Heisberg RD',
+    price: 450,
+    originalPrice: null,
+    rating: 4.7,
     reviews: 89,
-    category: 'Gin',
-    badge: 'Sale',
-    image: '/placeholder.jpg',
+    category: 'Premium',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-red.png',
   },
   {
     id: 3,
-    name: 'AETHER XO Cognac',
-    price: 349,
+    name: 'Heisberg BL',
+    price: 450,
     originalPrice: null,
-    rating: 5.0,
-    reviews: 45,
-    category: 'Cognac',
-    badge: 'Limited',
-    image: '/placeholder.jpg',
+    rating: 4.9,
+    reviews: 156,
+    category: 'Premium',
+    badge: 'Popular',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-blue-X2PSV6.png',
   },
   {
     id: 4,
-    name: 'AETHER VSOP',
-    price: 179,
+    name: 'Heisberg GR',
+    price: 450,
     originalPrice: null,
-    rating: 4.7,
+    rating: 4.6,
     reviews: 98,
-    category: 'Cognac',
-    image: '/placeholder.jpg',
+    category: 'Premium',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-green-QRHPVB6.png',
   },
   {
     id: 5,
-    name: 'AETHER Signature Blend',
-    price: 199,
+    name: 'Heisberg SM Black',
+    price: 280,
     originalPrice: null,
-    rating: 4.9,
+    rating: 4.8,
     reviews: 76,
-    category: 'Signature',
-    badge: 'Exclusive',
-    image: '/placeholder.jpg',
+    category: 'Small Bottle',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/black-small-829HCTV.png',
   },
   {
     id: 6,
-    name: 'AETHER Midnight',
-    price: 159,
+    name: 'Heisberg SM Brown',
+    price: 280,
     originalPrice: null,
-    rating: 4.6,
+    rating: 4.7,
     reviews: 54,
-    category: 'Signature',
-    image: '/placeholder.jpg',
+    category: 'Small Bottle',
+    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/brownn-small-829HCTV.png',
   },
 ];
 
-const categories = ['All', 'Gin', 'Cognac', 'Signature', 'Gift Sets'];
+const categories = ['All', 'Premium', 'Small Bottle'];
 
 export default function ShopPage() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -100,11 +98,10 @@ export default function ShopPage() {
           >
             <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Shop</p>
             <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl mb-6">
-              Luxury <span className="gold-gradient">Spirits</span>
+              <span className="gold-gradient">Heisberg</span> Beers
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Browse our collection of premium spirits. Each bottle is shipped with care 
-              and delivered to your door.
+              Browse our collection of premium Ethiopian craft beers. Available in full bottles and convenient small formats.
             </p>
           </motion.div>
         </div>
@@ -142,18 +139,16 @@ export default function ShopPage() {
                 className="group"
               >
                 <div className="glass rounded-2xl overflow-hidden hover:border-[rgba(201,169,98,0.3)] transition-all duration-500">
-                  <div className="relative h-80 bg-gradient-to-b from-[rgba(201,169,98,0.05)] to-[#0a0a0a] flex items-center justify-center p-8">
-                    <div className="w-28 h-56 border border-[rgba(201,169,98,0.4)] rounded-xl bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] relative">
-                      <div className="absolute inset-2 border border-[rgba(201,169,98,0.2)] rounded-lg" />
-                    </div>
+                  <div className="relative h-72 bg-gradient-to-b from-[rgba(201,169,98,0.05)] to-[#0a0a0a] flex items-center justify-center p-8">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
 
                     <div className="absolute top-4 left-4 flex gap-2">
                       {product.badge && (
-                        <span className={`px-3 py-1 text-xs font-bold uppercase rounded ${
-                          product.badge === 'Sale' ? 'bg-red-600 text-white' :
-                          product.badge === 'Limited' ? 'bg-[#c9a962] text-black' :
-                          'bg-[rgba(201,169,98,0.2)] text-[#c9a962]'
-                        }`}>
+                        <span className="px-3 py-1 text-xs font-bold uppercase rounded bg-[rgba(201,169,98,0.2)] text-[#c9a962]">
                           {product.badge}
                         </span>
                       )}
@@ -180,10 +175,7 @@ export default function ShopPage() {
                     </h3>
 
                     <div className="flex items-center gap-3 mb-6">
-                      <span className="text-2xl font-semibold text-white">${product.price}</span>
-                      {product.originalPrice && (
-                        <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
-                      )}
+                      <span className="text-2xl font-semibold text-white">ETB {product.price}</span>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -228,17 +220,17 @@ export default function ShopPage() {
               className="glass rounded-2xl p-8 border border-[rgba(201,169,98,0.1)]"
             >
               <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-4">
-                Gift Sets
+                Wholesale Orders
               </h3>
               <p className="text-gray-400 mb-6">
-                Make any occasion memorable with our curated gift sets. Each set includes 
-                premium spirits and elegant accessories.
+                Looking to stock Heisberg beers in your bar, restaurant, or retail store? 
+                We offer competitive wholesale pricing for qualified businesses.
               </p>
               <Link
-                href="/shop/gifts"
+                href="/contact"
                 className="inline-flex items-center gap-2 text-[#c9a962] hover:text-[#e8d5a3] transition-colors"
               >
-                Browse Gift Sets <ArrowRight size={18} />
+                Contact Us <ArrowRight size={18} />
               </Link>
             </motion.div>
 
@@ -249,17 +241,17 @@ export default function ShopPage() {
               className="glass rounded-2xl p-8 border border-[rgba(201,169,98,0.1)]"
             >
               <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-4">
-                Corporate Orders
+                Event Partnerships
               </h3>
               <p className="text-gray-400 mb-6">
-                Looking for bulk orders for events, corporate gifts, or retail partnerships? 
-                We offer special pricing for qualified businesses.
+                Sponsor your next event with Heisberg beers. From corporate gatherings to 
+                music festivals, we bring the premium experience.
               </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 text-[#c9a962] hover:text-[#e8d5a3] transition-colors"
               >
-                Contact Us <ArrowRight size={18} />
+                Get in Touch <ArrowRight size={18} />
               </Link>
             </motion.div>
           </div>

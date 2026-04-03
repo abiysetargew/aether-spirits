@@ -8,23 +8,23 @@ import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Users, Briefcase } fro
 const contactInfo = [
   {
     icon: MapPin,
-    title: 'Visit Us',
-    details: ['123 Distillery Lane', 'Napa Valley, CA 94558', 'United States'],
+    title: 'Headquarters',
+    details: ['Bole Road', 'Addis Ababa, Ethiopia'],
+  },
+  {
+    icon: MapPin,
+    title: 'Factory',
+    details: ['Industrial Zone', 'Akaki Kality, Addis Ababa'],
   },
   {
     icon: Phone,
     title: 'Call Us',
-    details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+    details: ['+251 11 123 4567', '+251 98 765 4321'],
   },
   {
     icon: Mail,
     title: 'Email Us',
-    details: ['hello@aetherspirits.com', 'orders@aetherspirits.com'],
-  },
-  {
-    icon: Clock,
-    title: 'Hours',
-    details: ['Mon-Fri: 9AM - 6PM PST', 'Sat-Sun: 10AM - 4PM PST'],
+    details: ['info@ethiobeverages.com', 'support@ethiobeverages.com'],
   },
 ];
 
@@ -32,20 +32,20 @@ const departments = [
   {
     icon: MessageCircle,
     title: 'Customer Support',
-    email: 'support@aetherspirits.com',
-    description: 'Questions about orders, products, or your account.',
+    email: 'support@ethiobeverages.com',
+    description: 'Questions about products, orders, or your account.',
   },
   {
     icon: Users,
     title: 'Partnerships',
-    email: 'partners@aetherspirits.com',
+    email: 'partners@ethiobeverages.com',
     description: 'Wholesale, distribution, and business inquiries.',
   },
   {
     icon: Briefcase,
-    title: 'Press & Media',
-    email: 'press@aetherspirits.com',
-    description: 'Media requests, interviews, and press kits.',
+    title: 'Careers',
+    email: 'careers@ethiobeverages.com',
+    description: 'Join the Ethio Beverages family.',
   },
 ];
 
@@ -91,8 +91,8 @@ export default function ContactPage() {
               Contact <span className="gold-gradient">Us</span>
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Have a question or want to learn more? We&apos;d love to hear from you. 
-              Our team is here to help.
+              Have a question or want to partner with us? We&apos;d love to hear from you. 
+              Based in the heart of Addis Ababa, Ethiopia.
             </p>
           </motion.div>
         </div>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                     Message Sent!
                   </h3>
                   <p className="text-gray-400">
-                    Thank you for reaching out. We&apos;ll get back to you within 24 hours.
+                    Thank you for reaching out. We&apos;ll get back to you soon.
                   </p>
                 </motion.div>
               ) : (
@@ -165,7 +165,6 @@ export default function ContactPage() {
                     >
                       <option value="customer-support">Customer Support</option>
                       <option value="partnerships">Partnerships</option>
-                      <option value="press">Press & Media</option>
                       <option value="careers">Careers</option>
                       <option value="other">Other</option>
                     </select>
@@ -271,7 +270,8 @@ export default function ContactPage() {
             <div className="h-80 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] flex items-center justify-center">
               <div className="text-center">
                 <MapPin size={48} className="text-[#c9a962] mx-auto mb-4" />
-                <p className="text-gray-400">Interactive Map Coming Soon</p>
+                <p className="text-white text-xl font-semibold mb-2">Ethio Beverages</p>
+                <p className="text-gray-400">Bole Road, Addis Ababa, Ethiopia</p>
               </div>
             </div>
           </motion.div>
