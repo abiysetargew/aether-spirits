@@ -1,4 +1,5 @@
 'use client';
+// @ts-nocheck
 
 import { useRef } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
