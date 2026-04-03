@@ -8,69 +8,85 @@ import { ShoppingBag, Heart, Star, ArrowRight, Plus, Minus } from 'lucide-react'
 const products = [
   {
     id: 1,
-    name: 'Heisberg BR',
-    price: 450,
+    name: 'ETHO Signature Gin',
+    type: 'London Dry Gin',
+    price: 2500,
     originalPrice: null,
-    rating: 4.8,
-    reviews: 127,
-    category: 'Premium',
+    rating: 4.9,
+    reviews: 86,
+    category: 'Gin',
     badge: 'Bestseller',
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-brown.png',
+    abv: '47%',
+    note: 'Juniper & Ethiopian Botanicals',
   },
   {
     id: 2,
-    name: 'Heisberg RD',
-    price: 450,
+    name: 'ETHO XO Cognac',
+    type: 'Extra Old',
+    price: 8500,
     originalPrice: null,
-    rating: 4.7,
-    reviews: 89,
-    category: 'Premium',
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-red.png',
+    rating: 5.0,
+    reviews: 42,
+    category: 'Cognac',
+    badge: 'Limited',
+    abv: '40%',
+    note: '25 Years Aged',
   },
   {
     id: 3,
-    name: 'Heisberg BL',
-    price: 450,
+    name: 'ETHO Reserve Blend',
+    type: 'Signature Blend',
+    price: 4200,
     originalPrice: null,
-    rating: 4.9,
-    reviews: 156,
-    category: 'Premium',
-    badge: 'Popular',
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-blue-X2PSV6.png',
+    rating: 4.8,
+    reviews: 67,
+    category: 'Blends',
+    badge: null,
+    abv: '45%',
+    note: "Master Distiller's Selection",
   },
   {
     id: 4,
-    name: 'Heisberg GR',
-    price: 450,
+    name: 'ETHO Navy Strength',
+    type: 'Premium Gin',
+    price: 3200,
     originalPrice: null,
-    rating: 4.6,
-    reviews: 98,
-    category: 'Premium',
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-green-QRHPVB6.png',
+    rating: 4.7,
+    reviews: 38,
+    category: 'Gin',
+    badge: null,
+    abv: '57%',
+    note: 'Bold & Complex',
   },
   {
     id: 5,
-    name: 'Heisberg SM Black',
-    price: 280,
-    originalPrice: null,
-    rating: 4.8,
-    reviews: 76,
-    category: 'Small Bottle',
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/black-small-829HCTV.png',
+    name: 'ETHO VSOP',
+    type: 'Cognac',
+    price: 5800,
+    originalPrice: 6500,
+    rating: 4.9,
+    reviews: 54,
+    category: 'Cognac',
+    badge: 'Popular',
+    abv: '40%',
+    note: '10 Years Aged',
   },
   {
     id: 6,
-    name: 'Heisberg SM Brown',
-    price: 280,
+    name: 'ETHO Gold Edition',
+    type: 'Prestige Blend',
+    price: 12500,
     originalPrice: null,
-    rating: 4.7,
-    reviews: 54,
-    category: 'Small Bottle',
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/brownn-small-829HCTV.png',
+    rating: 5.0,
+    reviews: 21,
+    category: 'Blends',
+    badge: 'Exclusive',
+    abv: '42%',
+    note: 'Rare Small Batch',
   },
 ];
 
-const categories = ['All', 'Premium', 'Small Bottle'];
+const categories = ['All', 'Gin', 'Cognac', 'Blends'];
 
 export default function ShopPage() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -89,25 +105,26 @@ export default function ShopPage() {
 
   return (
     <div className="pt-24">
-      <section className="py-20 bg-gradient-to-b from-[#080808] to-[#050505]">
+      <section className="py-20 bg-gradient-to-b from-black to-gray-950">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Shop</p>
+            <p className="text-amber-500 text-sm tracking-[0.3em] uppercase mb-4">Shop</p>
             <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl mb-6">
-              <span className="gold-gradient">Heisberg</span> Beers
+              <span className="gold-gradient">ETHO</span> Collection
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Browse our collection of premium Ethiopian craft beers. Available in full bottles and convenient small formats.
+              Explore our collection of premium Ethiopian spirits. From our signature gin to aged cognacs, 
+              each bottle represents the pinnacle of Ethiopian craftsmanship.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-12 bg-[#050505] border-y border-[rgba(201,169,98,0.1)]">
+      <section className="py-12 bg-gray-950 border-y border-amber-600/10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
@@ -116,8 +133,8 @@ export default function ShopPage() {
                 onClick={() => setActiveCategory(category)}
                 className={`px-6 py-2 text-sm uppercase tracking-wider rounded-full transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-[#c9a962] text-black'
-                    : 'border border-gray-700 text-gray-400 hover:border-[#c9a962] hover:text-[#c9a962]'
+                    ? 'bg-amber-500 text-black'
+                    : 'border border-gray-700 text-gray-400 hover:border-amber-500 hover:text-amber-500'
                 }`}
               >
                 {category}
@@ -127,7 +144,7 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#050505]">
+      <section className="py-20 bg-gray-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProducts.map((product, index) => (
@@ -138,24 +155,32 @@ export default function ShopPage() {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <div className="glass rounded-2xl overflow-hidden hover:border-[rgba(201,169,98,0.3)] transition-all duration-500">
-                  <div className="relative h-72 bg-gradient-to-b from-[rgba(201,169,98,0.05)] to-[#0a0a0a] flex items-center justify-center p-8">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
+                <div className="glass rounded-2xl overflow-hidden hover:border-amber-500/30 transition-all duration-500">
+                  <div className="relative h-80 bg-gradient-to-b from-amber-500/5 to-black flex items-center justify-center p-8">
+                    <div className="relative">
+                      <div className="w-28 h-56 border-2 border-amber-600/30 rounded-lg bg-gradient-to-b from-gray-900 to-black relative">
+                        <div className="absolute inset-2 border border-amber-600/20 rounded" />
+                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-10 h-10 bg-gradient-to-b from-amber-600 to-amber-800 rounded-t-lg" />
+                        <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center">
+                          <span className="text-amber-500 text-xs font-bold">ETHO</span>
+                        </div>
+                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+                          <span className="text-amber-500/60 text-[8px]">{product.type}</span>
+                        </div>
+                      </div>
+                      <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 h-20 bg-amber-500/10 blur-2xl rounded-full" />
+                    </div>
 
                     <div className="absolute top-4 left-4 flex gap-2">
                       {product.badge && (
-                        <span className="px-3 py-1 text-xs font-bold uppercase rounded bg-[rgba(201,169,98,0.2)] text-[#c9a962]">
+                        <span className="px-3 py-1 text-xs font-bold uppercase rounded bg-amber-500/20 text-amber-500">
                           {product.badge}
                         </span>
                       )}
                     </div>
 
                     <div className="absolute top-4 right-4">
-                      <button className="w-10 h-10 rounded-full bg-[#111] border border-gray-700 flex items-center justify-center text-gray-400 hover:border-[#c9a962] hover:text-[#c9a962] transition-all duration-300">
+                      <button className="w-10 h-10 rounded-full bg-black/50 border border-gray-700 flex items-center justify-center text-gray-400 hover:border-amber-500 hover:text-amber-500 transition-all duration-300">
                         <Heart size={18} />
                       </button>
                     </div>
@@ -164,18 +189,24 @@ export default function ShopPage() {
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="flex items-center gap-1">
-                        <Star size={14} className="text-[#c9a962]" fill="#c9a962" />
+                        <Star size={14} className="text-amber-500" fill="#c9a962" />
                         <span className="text-white text-sm">{product.rating}</span>
                       </div>
-                      <span className="text-gray-500 text-sm">({product.reviews} reviews)</span>
+                      <span className="text-gray-500 text-sm">({product.reviews})</span>
+                      <span className="ml-auto text-amber-500 text-sm font-semibold">{product.abv}</span>
                     </div>
 
-                    <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-2 group-hover:text-[#c9a962] transition-colors">
+                    <p className="text-amber-500/60 text-xs uppercase tracking-wider mb-1">{product.type}</p>
+                    <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-1 group-hover:text-amber-500 transition-colors">
                       {product.name}
                     </h3>
+                    <p className="text-gray-500 text-sm mb-4">{product.note}</p>
 
                     <div className="flex items-center gap-3 mb-6">
-                      <span className="text-2xl font-semibold text-white">ETB {product.price}</span>
+                      <span className="text-2xl font-semibold text-white">ETB {product.price.toLocaleString()}</span>
+                      {product.originalPrice && (
+                        <span className="text-gray-500 line-through">ETB {product.originalPrice.toLocaleString()}</span>
+                      )}
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -197,7 +228,7 @@ export default function ShopPage() {
                         </button>
                       </div>
 
-                      <button className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#c9a962] to-[#e8d5a3] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_30px_rgba(201,169,98,0.4)] transition-all duration-300">
+                      <button className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-400 text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_30px_rgba(201,169,98,0.4)] transition-all duration-300">
                         <ShoppingBag size={18} />
                         Add to Cart
                       </button>
@@ -210,25 +241,25 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#080808]">
+      <section className="py-24 bg-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="glass rounded-2xl p-8 border border-[rgba(201,169,98,0.1)]"
+              className="glass rounded-2xl p-8 border border-amber-600/10"
             >
               <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-4">
                 Wholesale Orders
               </h3>
               <p className="text-gray-400 mb-6">
-                Looking to stock Heisberg beers in your bar, restaurant, or retail store? 
+                Looking to stock ETHO spirits in your bar, restaurant, or retail store? 
                 We offer competitive wholesale pricing for qualified businesses.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-[#c9a962] hover:text-[#e8d5a3] transition-colors"
+                className="inline-flex items-center gap-2 text-amber-500 hover:text-amber-400 transition-colors"
               >
                 Contact Us <ArrowRight size={18} />
               </Link>
@@ -238,18 +269,18 @@ export default function ShopPage() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="glass rounded-2xl p-8 border border-[rgba(201,169,98,0.1)]"
+              className="glass rounded-2xl p-8 border border-amber-600/10"
             >
               <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-4">
-                Event Partnerships
+                Corporate Gifting
               </h3>
               <p className="text-gray-400 mb-6">
-                Sponsor your next event with Heisberg beers. From corporate gatherings to 
-                music festivals, we bring the premium experience.
+                Make a lasting impression with premium ETHO spirits gift sets. Perfect for 
+                corporate events, celebrations, and special occasions.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-[#c9a962] hover:text-[#e8d5a3] transition-colors"
+                className="inline-flex items-center gap-2 text-amber-500 hover:text-amber-400 transition-colors"
               >
                 Get in Touch <ArrowRight size={18} />
               </Link>

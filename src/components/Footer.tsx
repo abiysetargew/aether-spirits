@@ -1,81 +1,164 @@
 'use client';
 
 import Link from 'next/link';
-import { Instagram, Twitter, Youtube, Facebook, MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer style={{ backgroundColor: '#050505', borderTop: '1px solid rgba(201,169,98,0.1)', position: 'relative' }}>
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent, rgba(201,169,98,0.02))' }} />
-      
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 24px 32px', position: 'relative' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '48px', marginBottom: '64px' }}>
-          {/* Brand */}
+    <footer style={{
+      background: '#050505',
+      borderTop: '1px solid rgba(201,169,98,0.1)',
+      padding: '80px 48px 40px',
+    }}>
+      <div style={{
+        maxWidth: '1400px',
+        margin: '0 auto',
+      }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '64px',
+          marginBottom: '64px',
+        }}>
           <div>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', marginBottom: '24px' }}>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #c9a962', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ color: '#c9a962', fontWeight: 'bold', fontSize: '16px' }}>EB</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                border: '2px solid #c9a962',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '16px',
+                fontWeight: '600',
+                color: '#c9a962',
+              }}>EB</div>
+              <div>
+                <div style={{ fontSize: '18px', fontWeight: '600', letterSpacing: '0.3em', color: '#c9a962' }}>ETHO</div>
+                <div style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#c9a962', opacity: 0.7 }}>BEVERAGES</div>
               </div>
-              <span style={{ background: 'linear-gradient(135deg, #e8d5a3, #c9a962)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontSize: '24px', fontWeight: 'bold', letterSpacing: '0.1em' }}>
-                HEISBERG
-              </span>
-            </Link>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: 1.7, marginBottom: '24px' }}>
-              Premium Ethiopian craft beer brewed in Addis Ababa. The taste that makes you feel awesome.
-            </p>
-            <div style={{ display: 'flex', gap: '16px' }}>
-              {[Instagram, Twitter, Youtube, Facebook].map((Icon, i) => (
-                <a key={i} href="#" style={{ width: '40px', height: '40px', borderRadius: '50%', border: '1px solid #374151', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6b7280', transition: 'all 0.3s' }}>
-                  <Icon size={18} />
-                </a>
-              ))}
             </div>
+            <p style={{ color: '#666', fontSize: '14px', lineHeight: 1.8, maxWidth: '300px' }}>
+              Ethiopia's premier luxury spirits manufacturer. Crafting exceptional gin, cognac, and signature blends since 2021.
+            </p>
           </div>
 
-          {/* Explore */}
           <div>
-            <h4 style={{ color: '#c9a962', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '24px' }}>Explore</h4>
+            <h4 style={{ color: '#c9a962', fontSize: '11px', letterSpacing: '0.2em', marginBottom: '24px', textTransform: 'uppercase' }}>Explore</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {['Our Beers', 'Distillery', 'Heritage', 'Shop', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link href={item === 'Our Beers' ? '/spirits' : `/${item.toLowerCase()}`} style={{ color: '#6b7280', fontSize: '14px', textDecoration: 'none', transition: 'color 0.3s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#6b7280'}
+              {[
+                { title: 'Collection', href: '/spirits' },
+                { title: 'Distillery', href: '/distillery' },
+                { title: 'Heritage', href: '/heritage' },
+                { title: 'Gallery', href: '/gallery' },
+                { title: 'Cocktails', href: '/cocktails' },
+              ].map((item) => (
+                <li key={item.title}>
+                  <Link href={item.href} style={{
+                    color: '#666',
+                    fontSize: '14px',
+                    textDecoration: 'none',
+                    transition: 'color 0.3s',
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#666'}
                   >
-                    {item}
+                    {item.title}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 style={{ color: '#c9a962', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '24px' }}>Contact</h4>
+            <h4 style={{ color: '#c9a962', fontSize: '11px', letterSpacing: '0.2em', marginBottom: '24px', textTransform: 'uppercase' }}>Business</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {[
+                { title: 'Shop', href: '/shop' },
+                { title: 'Distribution', href: '/distribution' },
+                { title: 'Visit Us', href: '/visit' },
+                { title: 'Contact', href: '/contact' },
+              ].map((item) => (
+                <li key={item.title}>
+                  <Link href={item.href} style={{
+                    color: '#666',
+                    fontSize: '14px',
+                    textDecoration: 'none',
+                    transition: 'color 0.3s',
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#666'}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 style={{ color: '#c9a962', fontSize: '11px', letterSpacing: '0.2em', marginBottom: '24px', textTransform: 'uppercase' }}>Contact</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', color: '#6b7280', fontSize: '14px' }}>
-                <MapPin size={18} color="#c9a962" style={{ marginTop: '2px', flexShrink: 0 }} />
-                <span>Bole Road, Addis Ababa, Ethiopia</span>
+              <li style={{ color: '#666', fontSize: '14px' }}>
+                <span style={{ color: '#c9a962', marginRight: '12px' }}>📍</span>
+                Bole Road, Addis Ababa
               </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#6b7280', fontSize: '14px' }}>
-                <Phone size={18} color="#c9a962" />
-                <span>+251 11 123 4567</span>
+              <li style={{ color: '#666', fontSize: '14px' }}>
+                <span style={{ color: '#c9a962', marginRight: '12px' }}>📞</span>
+                +251 11 123 4567
               </li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#6b7280', fontSize: '14px' }}>
-                <Mail size={18} color="#c9a962" />
-                <span>info@ethiobeverages.com</span>
+              <li style={{ color: '#666', fontSize: '14px' }}>
+                <span style={{ color: '#c9a962', marginRight: '12px' }}>✉️</span>
+                info@ethobeverages.com
               </li>
             </ul>
           </div>
+
+          <div>
+            <h4 style={{ color: '#c9a962', fontSize: '11px', letterSpacing: '0.2em', marginBottom: '24px', textTransform: 'uppercase' }}>Follow Us</h4>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              {['📷', '🐦', '📺', '📘'].map((icon, i) => (
+                <a key={i} href="#" style={{
+                  width: '44px',
+                  height: '44px',
+                  border: '1px solid #333',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#666',
+                  fontSize: '18px',
+                  transition: 'all 0.3s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#c9a962';
+                  e.currentTarget.style.color = '#c9a962';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#333';
+                  e.currentTarget.style.color = '#666';
+                }}
+                >
+                  {icon}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div style={{ paddingTop: '32px', borderTop: '1px solid #1f2937', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '16px', alignItems: 'center' }}>
-          <p style={{ color: '#6b7280', fontSize: '14px' }}>
-            © {currentYear} Ethio Beverages. All rights reserved.
+        <div style={{
+          paddingTop: '32px',
+          borderTop: '1px solid #1a1a1a',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '16px',
+        }}>
+          <p style={{ color: '#444', fontSize: '13px' }}>
+            © 2025 Etho Beverages. All rights reserved.
           </p>
-          <p style={{ color: '#4b5563', fontSize: '12px' }}>
+          <p style={{ color: '#333', fontSize: '11px' }}>
             Please drink responsibly. Must be 21+ to purchase.
           </p>
         </div>

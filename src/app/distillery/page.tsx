@@ -3,36 +3,36 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Droplets, Flame, Wind, Calendar, MapPin } from 'lucide-react';
+import { ArrowRight, Droplets, Flame, Wind, Calendar, MapPin, Beaker, Wine } from 'lucide-react';
 
 const processSteps = [
   {
     number: '01',
-    title: 'Water Source',
-    icon: Droplets,
-    description: 'Pure Ethiopian highland water, filtered through volcanic rock.',
-    detail: 'Our water originates from Ethiopian highland springs, naturally filtered through ancient volcanic rock formations, giving our beers their unique mineral profile.',
+    title: 'Ethiopian Botanicals',
+    icon: Wind,
+    description: 'Hand-selected botanicals from the Ethiopian highlands.',
+    detail: 'Our master distiller sources indigenous botanicals including Ethiopian juniper, wild sage, and aromatic spices from the highlands, creating a unique flavor profile unlike any other gin.',
   },
   {
     number: '02',
-    title: 'Ingredient Selection',
-    icon: Wind,
-    description: 'Hand-selected Ethiopian barley and premium hops.',
-    detail: 'From Ethiopian barley fields to premium imported hops, each ingredient is sourced at peak quality and processed within 24 hours of delivery.',
+    title: 'Pure Water',
+    icon: Droplets,
+    description: 'Volcanic-filtered highland water for exceptional purity.',
+    detail: 'Our water originates from Ethiopian highland springs, naturally filtered through ancient volcanic rock formations, giving our spirits their signature smoothness.',
   },
   {
     number: '03',
-    title: 'Brewing Process',
-    icon: Flame,
-    description: 'State-of-the-art brewing equipment operated by expert brewers.',
-    detail: 'Our modern facility in Akaki Kality uses the latest brewing technology, guided by master brewers with decades of combined experience.',
+    title: 'Copper Distillation',
+    icon: Beaker,
+    description: 'Traditional pot stills meet modern precision.',
+    detail: 'Our state-of-the-art copper pot stills in Akaki Kality combine time-honored techniques with modern technology, ensuring each batch meets our exacting standards.',
   },
   {
     number: '04',
-    title: 'Quality Control',
+    title: 'Patient Aging',
     icon: Calendar,
-    description: 'Rigorous testing at every stage of production.',
-    detail: 'From raw materials to final packaging, every batch undergoes comprehensive quality testing to ensure consistent excellence.',
+    description: 'Years of maturation in French oak barrels.',
+    detail: 'For our cognacs and aged spirits, we use carefully selected French oak barrels. Each spirit ages gracefully until our master distiller determines perfect maturity.',
   },
 ];
 
@@ -44,16 +44,16 @@ const features = [
     icon: MapPin,
   },
   {
-    title: 'Production Facility',
+    title: 'Distillery',
     location: 'Akaki Kality',
     description: 'Industrial Zone, Addis Ababa',
-    icon: Droplets,
+    icon: Flame,
   },
   {
-    title: 'Quality Lab',
+    title: 'Aging Cellar',
     location: 'Addis Ababa',
-    description: 'State-of-the-art testing',
-    icon: Flame,
+    description: 'Climate-controlled maturation',
+    icon: Wine,
   },
 ];
 
@@ -71,7 +71,7 @@ export default function DistilleryPage() {
       <section className="relative h-[80vh] overflow-hidden">
         <motion.div
           style={{ y }}
-          className="absolute inset-0 bg-gradient-to-b from-[#080808] via-[#0a0a0a] to-[#050505]"
+          className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black"
         />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,169,98,0.15)_0%,transparent_70%)]" />
 
@@ -83,22 +83,22 @@ export default function DistilleryPage() {
               transition={{ duration: 0.8 }}
               className="max-w-3xl"
             >
-              <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">
+              <p className="text-amber-500 text-sm tracking-[0.3em] uppercase mb-4">
                 Made in Ethiopia
               </p>
               <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl mb-6">
-                Our <span className="gold-gradient">Facility</span>
+                Our <span className="gold-gradient">Distillery</span>
               </h1>
               <p className="text-gray-400 text-xl leading-relaxed">
-                State-of-the-art brewing facilities in the heart of Addis Ababa. 
-                Where Ethiopian tradition meets modern brewing excellence.
+                State-of-the-art spirits production facilities in the heart of Addis Ababa. 
+                Where Ethiopian tradition meets world-class distillation excellence.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#050505]">
+      <section className="py-24 bg-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
@@ -106,19 +106,19 @@ export default function DistilleryPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">The Process</p>
+              <p className="text-amber-500 text-sm tracking-[0.3em] uppercase mb-4">The Process</p>
               <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-6">
                 From <span className="gold-gradient">Ingredient</span> to <span className="gold-gradient">Bottle</span>
               </h2>
               <p className="text-gray-400 leading-relaxed mb-8">
-                Our meticulous brewing process combines time-honored techniques with modern precision. 
-                Each step is carefully monitored to ensure consistent quality in every batch.
+                Our meticulous distillation process combines time-honored techniques with modern precision. 
+                Each batch is carefully monitored to ensure consistent excellence and exceptional quality.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-[#c9a962] hover:text-[#e8d5a3] transition-colors"
+                className="inline-flex items-center gap-2 text-amber-500 hover:text-amber-400 transition-colors"
               >
-                Schedule a Visit <ArrowRight size={18} />
+                Schedule a Tour <ArrowRight size={18} />
               </Link>
             </motion.div>
 
@@ -133,15 +133,15 @@ export default function DistilleryPage() {
                   className="flex gap-6 group"
                 >
                   <div className="relative">
-                    <div className="w-16 h-16 rounded-full border border-[rgba(201,169,98,0.3)] flex items-center justify-center group-hover:border-[#c9a962] group-hover:bg-[rgba(201,169,98,0.1)] transition-all duration-300">
-                      <step.icon size={24} className="text-[#c9a962]" />
+                    <div className="w-16 h-16 rounded-full border border-amber-600/30 flex items-center justify-center group-hover:border-amber-500 group-hover:bg-amber-500/10 transition-all duration-300">
+                      <step.icon size={24} className="text-amber-500" />
                     </div>
                     {index < processSteps.length - 1 && (
-                      <div className="absolute top-16 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-[rgba(201,169,98,0.3)] to-transparent" />
+                      <div className="absolute top-16 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-amber-600/30 to-transparent" />
                     )}
                   </div>
                   <div className="flex-1 pb-8">
-                    <span className="text-[#c9a962] text-xs font-semibold">{step.number}</span>
+                    <span className="text-amber-500 text-xs font-semibold">{step.number}</span>
                     <h3 className="font-[family-name:var(--font-playfair)] text-xl text-white mb-2">
                       {step.title}
                     </h3>
@@ -155,7 +155,7 @@ export default function DistilleryPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#080808]">
+      <section className="py-24 bg-gradient-to-b from-black via-gray-950 to-black">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -163,7 +163,7 @@ export default function DistilleryPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Our Locations</p>
+            <p className="text-amber-500 text-sm tracking-[0.3em] uppercase mb-4">Our Locations</p>
             <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl">
               Proudly <span className="gold-gradient">Ethiopian</span>
             </h2>
@@ -179,9 +179,9 @@ export default function DistilleryPage() {
                 transition={{ delay: index * 0.2 }}
                 className="group"
               >
-                <div className="glass rounded-2xl p-8 border border-[rgba(201,169,98,0.1)] hover:border-[rgba(201,169,98,0.3)] transition-all duration-300">
-                  <feature.icon size={48} className="text-[#c9a962] mb-6" />
-                  <div className="flex items-center gap-2 text-[#c9a962] text-sm mb-2">
+                <div className="glass rounded-2xl p-8 border border-amber-600/10 hover:border-amber-600/30 transition-all duration-300">
+                  <feature.icon size={48} className="text-amber-500 mb-6" />
+                  <div className="flex items-center gap-2 text-amber-500 text-sm mb-2">
                     <MapPin size={14} />
                     {feature.location}
                   </div>
@@ -196,27 +196,27 @@ export default function DistilleryPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#050505]">
+      <section className="py-24 bg-black">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass rounded-3xl p-12 md:p-16 border border-[rgba(201,169,98,0.1)] text-center"
+            className="glass rounded-3xl p-12 md:p-16 border border-amber-600/10 text-center"
           >
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl mb-6">
               Visit <span className="gold-gradient">Us</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-              Experience our facilities firsthand. Contact us to schedule a tour of our brewing facility 
+              Experience our distillery firsthand. Contact us to schedule a tour of our spirits production facility 
               in Addis Ababa.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#c9a962] to-[#e8d5a3] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-400 text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-300"
               >
-                Contact Us <ArrowRight size={18} />
+                Book a Tour <ArrowRight size={18} />
               </Link>
             </div>
           </motion.div>

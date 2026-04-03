@@ -4,133 +4,166 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const navLinks = [
-  { title: 'Our Beers', href: '/spirits' },
+  { title: 'Collection', href: '/spirits' },
   { title: 'Distillery', href: '/distillery' },
   { title: 'Heritage', href: '/heritage' },
+  { title: 'Gallery', href: '/gallery' },
+  { title: 'Cocktails', href: '/cocktails' },
+  { title: 'Distribution', href: '/distribution' },
+  { title: 'Visit', href: '/visit' },
   { title: 'Shop', href: '/shop' },
-  { title: 'Contact', href: '/contact' },
 ];
 
 export default function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
-      <nav
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          padding: isScrolled ? '16px 24px' : '24px 24px',
-          background: isScrolled ? 'rgba(10, 10, 10, 0.95)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(20px)' : 'none',
-          transition: 'all 0.5s',
-          borderBottom: isScrolled ? '1px solid rgba(201,169,98,0.1)' : 'none'
-        }}
-      >
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #c9a962', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ color: '#c9a962', fontWeight: 'bold', fontSize: '16px' }}>EB</span>
+      <nav style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        padding: scrolled ? '16px 48px' : '24px 48px',
+        background: scrolled ? 'rgba(0,0,0,0.95)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        transition: 'all 0.4s ease',
+        borderBottom: scrolled ? '1px solid rgba(201,169,98,0.15)' : 'none',
+      }}>
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+          <Link href="/" style={{ textDecoration: 'none' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                border: '2px solid #c9a962',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '18px',
+                fontWeight: '600',
+                color: '#c9a962',
+                letterSpacing: '0.1em',
+              }}>EB</div>
+              <div>
+                <div style={{
+                  fontSize: '20px',
+                  fontWeight: '600',
+                  letterSpacing: '0.3em',
+                  background: 'linear-gradient(135deg, #e8d5a3, #c9a962, #8b7355)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}>ETHO</div>
+                <div style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#c9a962', marginTop: '-2px' }}>BEVERAGES</div>
+              </div>
             </div>
-            <span style={{ background: 'linear-gradient(135deg, #e8d5a3, #c9a962, #8b7355)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontSize: '24px', fontWeight: 'bold', letterSpacing: '0.1em' }}>
-              HEISBERG
-            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }} className="desktop-nav">
+          <div style={{ display: 'flex', gap: '48px', alignItems: 'center' }} className="nav-links">
             {navLinks.map((link) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                style={{
-                  color: '#d1d5db',
-                  fontSize: '14px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  textDecoration: 'none',
-                  transition: 'color 0.3s',
-                  padding: '8px 0'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#c9a962'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#d1d5db'}
+              <Link key={link.title} href={link.href} style={{
+                color: '#aaa',
+                fontSize: '12px',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                transition: 'color 0.3s',
+                position: 'relative',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#c9a962')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#aaa')}
               >
                 {link.title}
               </Link>
             ))}
+            <Link href="/contact" style={{
+              padding: '12px 24px',
+              background: 'transparent',
+              border: '1px solid rgba(201,169,98,0.5)',
+              borderRadius: '4px',
+              color: '#c9a962',
+              fontSize: '12px',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              transition: 'all 0.3s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#c9a962';
+              e.currentTarget.style.color = '#000';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = '#c9a962';
+            }}
+            >
+              Contact Us
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '8px', display: 'none' }}
-            className="mobile-menu-btn"
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              {isMobileMenuOpen ? (
-                <>
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </>
-              ) : (
-                <>
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
-                </>
-              )}
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{
+            display: 'none',
+            background: 'none',
+            border: 'none',
+            color: '#fff',
+            cursor: 'pointer',
+            padding: '8px',
+          }} className="menu-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
             </svg>
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
+      {menuOpen && (
         <div style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 40,
-          background: 'rgba(0,0,0,0.95)',
+          zIndex: 99,
+          background: '#000',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
           alignItems: 'center',
-          gap: '32px'
+          justifyContent: 'center',
+          gap: '32px',
         }}>
           {navLinks.map((link) => (
-            <Link
-              key={link.title}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              style={{
-                color: 'white',
-                fontSize: '32px',
-                textDecoration: 'none',
-                fontWeight: 'bold'
-              }}
-            >
+            <Link key={link.title} href={link.href} onClick={() => setMenuOpen(false)} style={{
+              color: '#fff',
+              fontSize: '28px',
+              fontWeight: '300',
+              letterSpacing: '0.2em',
+              textDecoration: 'none',
+            }}>
               {link.title}
             </Link>
           ))}
         </div>
       )}
 
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .mobile-menu-btn { display: block !important; }
+      <style>{`
+        @media (max-width: 900px) {
+          .nav-links { display: none !important; }
+          .menu-toggle { display: block !important; }
         }
       `}</style>
     </>

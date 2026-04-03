@@ -2,285 +2,125 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowRight, Filter, Star } from 'lucide-react';
 
-const products = [
-  {
-    id: 1,
-    name: 'Heisberg BR',
-    type: 'lager',
-    category: 'Premium',
-    subcategory: 'Brown Ale',
-    abv: '6.1%',
-    ibu: 60,
-    og: '1.102',
-    description: 'Rich brown ale with caramel notes, brewed with Ethiopian barley.',
-    price: 450,
-    rating: 4.8,
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-brown.png',
-    badge: 'Bestseller',
-  },
-  {
-    id: 2,
-    name: 'Heisberg RD',
-    type: 'lager',
-    category: 'Premium',
-    subcategory: 'Red Lager',
-    abv: '6.1%',
-    ibu: 60,
-    og: '1.102',
-    description: 'Smooth red lager with malty Ethiopian flavor profile.',
-    price: 450,
-    rating: 4.7,
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/ber-red.png',
-  },
-  {
-    id: 3,
-    name: 'Heisberg BL',
-    type: 'ale',
-    category: 'Premium',
-    subcategory: 'Blonde',
-    abv: '6.1%',
-    ibu: 60,
-    og: '1.102',
-    description: 'Crisp golden blonde ale, our flagship brew.',
-    price: 450,
-    rating: 4.9,
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-blue-X2PSV6.png',
-    badge: 'Popular',
-  },
-  {
-    id: 4,
-    name: 'Heisberg GR',
-    type: 'cider',
-    category: 'Premium',
-    subcategory: 'Green',
-    abv: '6.1%',
-    ibu: 60,
-    og: '1.102',
-    description: 'Refreshing green apple cider with crisp finish.',
-    price: 450,
-    rating: 4.6,
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-green-QRHPVB6.png',
-  },
-  {
-    id: 5,
-    name: 'Heisberg SM Black',
-    type: 'small',
-    category: 'Small Bottle',
-    subcategory: 'Black',
-    abv: '6.5%',
-    ibu: 60,
-    og: '1.104',
-    description: 'Bold dark brew in convenient small bottle format.',
-    price: 280,
-    rating: 4.8,
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/black-small-829HCTV.png',
-  },
-  {
-    id: 6,
-    name: 'Heisberg SM Brown',
-    type: 'small',
-    category: 'Small Bottle',
-    subcategory: 'Brown',
-    abv: '6.5%',
-    ibu: 60,
-    og: '1.104',
-    description: 'Warm nutty flavor in every sip.',
-    price: 280,
-    rating: 4.7,
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/brownn-small-829HCTV.png',
-  },
-  {
-    id: 7,
-    name: 'Heisberg SM Green',
-    type: 'small',
-    category: 'Small Bottle',
-    subcategory: 'Green',
-    abv: '6.5%',
-    ibu: 60,
-    og: '1.104',
-    description: 'Light citrus finish, perfect for casual moments.',
-    price: 280,
-    rating: 4.5,
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beeer-green.png',
-  },
-  {
-    id: 8,
-    name: 'Heisberg SM Gold',
-    type: 'small',
-    category: 'Small Bottle',
-    subcategory: 'Gold',
-    abv: '6.5%',
-    ibu: 60,
-    og: '1.104',
-    description: 'Classic golden taste loved by all.',
-    price: 280,
-    rating: 4.8,
-    image: 'https://ethiobeverages.com/wp-content/uploads/2025/09/beer-gold.png',
-  },
+const spirits = [
+  { id: 1, name: 'ETHO Signature Gin', type: 'Gin', subType: 'London Dry', abv: '47%', description: 'Our flagship gin distilled with Ethiopian juniper and 12 rare botanicals.', price: 2500, badge: 'Bestseller' },
+  { id: 2, name: 'ETHO Gin Reserve', type: 'Gin', subType: 'Old Tom', abv: '45%', description: 'A sweeter, oak-aged gin with unprecedented depth.', price: 3200 },
+  { id: 3, name: 'ETHO XO Cognac', type: 'Cognac', subType: 'Extra Old', abv: '40%', description: '25 years in Limousin oak. Pure elegance.', price: 8500, badge: 'Limited' },
+  { id: 4, name: 'ETHO VSOP', type: 'Cognac', subType: 'Very Superior', abv: '40%', description: '12 years aged. Perfect balance of fruit and oak.', price: 4200 },
+  { id: 5, name: 'ETHO Signature Blend', type: 'Blend', subType: 'Signature', abv: '45%', description: "Master distiller's personal creation.", price: 4800, badge: 'Exclusive' },
+  { id: 6, name: 'ETHO Midnight', type: 'Blend', subType: 'Dark', abv: '50%', description: 'Bold notes of espresso and dark chocolate.', price: 3600 },
 ];
 
-const categories = ['All', 'Premium', 'Small Bottle'];
-const subcategories = ['All', 'Brown Ale', 'Red Lager', 'Blonde', 'Green', 'Black', 'Gold'];
+const categories = ['All', 'Gin', 'Cognac', 'Blend'];
 
 export default function SpiritsPage() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [activeSubcategory, setActiveSubcategory] = useState('All');
-  const [sortBy, setSortBy] = useState('featured');
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  const filteredProducts = products.filter((product) => {
-    const categoryMatch = activeCategory === 'All' || product.category === activeCategory;
-    const subcategoryMatch = activeSubcategory === 'All' || product.subcategory === activeSubcategory;
-    return categoryMatch && subcategoryMatch;
-  });
+  const filtered = spirits.filter(s => activeCategory === 'All' || s.type === activeCategory);
 
   return (
-    <div className="pt-24">
-      <section className="py-20 bg-gradient-to-b from-[#080808] to-[#050505]">
-        <div className="max-w-7xl mx-auto px-6">
+    <div className="bg-black min-h-screen pt-24">
+      {/* Hero */}
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950 via-black to-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,169,98,0.1)_0%,transparent_50%)]" />
+        
+        <div className="relative max-w-7xl mx-auto px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center"
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Our Collection</p>
-            <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl mb-6">
-              <span className="gold-gradient">Heisberg</span> Beers
+            <span className="text-amber-500 text-xs tracking-[0.4em] uppercase">The Collection</span>
+            <h1 className="text-6xl lg:text-7xl font-bold mt-4">
+              <span className="bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent">Spirits</span>
+              <span className="text-white font-light"> of Distinction</span>
             </h1>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Discover our curated selection of premium Ethiopian craft beers. 
-              Each bottle is crafted with passion and delivers consistent quality.
+            <p className="text-gray-500 mt-6 max-w-2xl mx-auto">
+              Each expression represents the pinnacle of Ethiopian craftsmanship, 
+              blending tradition with innovation.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-12 bg-[#050505] border-y border-[rgba(201,169,98,0.1)] sticky top-[80px] z-30 glass-strong">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-            <div className="flex flex-wrap gap-3">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-2 text-sm uppercase tracking-wider rounded-full transition-all duration-300 ${
-                    activeCategory === category
-                      ? 'bg-[#c9a962] text-black'
-                      : 'border border-gray-700 text-gray-400 hover:border-[#c9a962] hover:text-[#c9a962]'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-4">
-              <button className="flex items-center gap-2 text-gray-400 hover:text-[#c9a962] transition-colors">
-                <Filter size={18} />
-                <span className="text-sm">Filter</span>
-              </button>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="bg-transparent border border-gray-700 text-gray-400 px-4 py-2 rounded text-sm focus:outline-none focus:border-[#c9a962]"
+      {/* Filter */}
+      <section className="sticky top-16 z-40 bg-black/90 backdrop-blur-xl border-b border-gray-800/50">
+        <div className="max-w-7xl mx-auto px-8 py-4">
+          <div className="flex flex-wrap gap-3 justify-center">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-2 rounded-full text-xs tracking-wider uppercase transition-all ${
+                  activeCategory === cat 
+                    ? 'bg-amber-600 text-black' 
+                    : 'border border-gray-700 text-gray-400 hover:border-amber-600 hover:text-amber-500'
+                }`}
               >
-                <option value="featured">Featured</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
-              </select>
-            </div>
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-[#050505]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap gap-3 mb-12">
-            {subcategories.map((sub) => (
-              <button
-                key={sub}
-                onClick={() => setActiveSubcategory(sub)}
-                className={`px-4 py-2 text-xs uppercase tracking-wider rounded transition-all duration-300 ${
-                  activeSubcategory === sub
-                    ? 'bg-[rgba(201,169,98,0.2)] text-[#c9a962] border border-[#c9a962]'
-                    : 'border border-gray-800 text-gray-500 hover:border-gray-600'
-                }`}
-              >
-                {sub}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {filteredProducts.map((product, index) => (
+      {/* Products */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filtered.map((spirit, i) => (
               <motion.div
-                key={product.id}
+                key={spirit.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
+                transition={{ delay: i * 0.1 }}
+                onMouseEnter={() => setHoveredId(spirit.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className="group relative"
               >
-                <div className="glass rounded-2xl overflow-hidden hover:border-[rgba(201,169,98,0.3)] transition-all duration-500">
-                  <div className="relative h-72 bg-gradient-to-b from-[rgba(201,169,98,0.05)] to-[#0a0a0a] flex items-center justify-center p-6">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                    
-                    {product.badge && (
-                      <div className="absolute top-4 right-4 px-3 py-1 bg-[#c9a962] text-black text-xs font-bold uppercase rounded">
-                        {product.badge}
+                <div className={`absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent rounded-3xl transition-opacity duration-500 ${hoveredId === spirit.id ? 'opacity-100' : 'opacity-0'}`} />
+                
+                <div className="relative p-8 rounded-3xl bg-gradient-to-b from-gray-900/80 to-transparent border border-gray-800/50 backdrop-blur-sm overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent" />
+                  
+                  {spirit.badge && (
+                    <div className="absolute top-4 right-4 px-3 py-1 bg-amber-600 text-black text-xs font-bold uppercase rounded">
+                      {spirit.badge}
+                    </div>
+                  )}
+
+                  <div className="h-64 flex items-center justify-center mb-6">
+                    <motion.div
+                      animate={{ y: hoveredId === spirit.id ? -8 : 0 }}
+                      className="relative"
+                    >
+                      <div className="w-28 h-56 border-2 border-amber-600/30 rounded-xl bg-gradient-to-b from-gray-900 to-black relative">
+                        <div className="absolute inset-3 border border-amber-600/20 rounded-lg" />
+                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-10 h-8 bg-gradient-to-b from-amber-600 to-amber-800 rounded-t-lg" />
+                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+                          <span className="text-amber-500 text-[8px] font-bold">ETHO</span>
+                        </div>
                       </div>
-                    )}
+                      <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 h-40 bg-amber-500/10 blur-3xl rounded-full" />
+                    </motion.div>
                   </div>
 
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[#c9a962] text-xs uppercase tracking-wider">
-                        {product.category} • {product.subcategory}
-                      </span>
-                      <div className="flex items-center gap-1">
-                        <Star size={12} className="text-[#c9a962]" fill="#c9a962" />
-                        <span className="text-gray-400 text-xs">{product.rating}</span>
-                      </div>
-                    </div>
-
-                    <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-2 group-hover:text-[#c9a962] transition-colors">
-                      {product.name}
-                    </h3>
-
-                    <p className="text-gray-500 text-sm mb-4">
-                      {product.description}
-                    </p>
-
-                    <div className="grid grid-cols-3 gap-2 mb-4 text-center">
-                      <div className="bg-[rgba(201,169,98,0.1)] rounded p-2">
-                        <p className="text-[10px] text-gray-500 uppercase">ABV</p>
-                        <p className="text-sm font-semibold text-[#c9a962]">{product.abv}</p>
-                      </div>
-                      <div className="bg-[rgba(201,169,98,0.1)] rounded p-2">
-                        <p className="text-[10px] text-gray-500 uppercase">IBU</p>
-                        <p className="text-sm font-semibold text-[#c9a962]">{product.ibu}</p>
-                      </div>
-                      <div className="bg-[rgba(201,169,98,0.1)] rounded p-2">
-                        <p className="text-[10px] text-gray-500 uppercase">OG</p>
-                        <p className="text-sm font-semibold text-[#c9a962]">{product.og}</p>
-                      </div>
-                    </div>
-
+                  <div className="text-center">
+                    <span className="text-amber-500 text-[10px] tracking-[0.3em] uppercase">{spirit.type} • {spirit.subType}</span>
+                    <h3 className="text-xl font-bold text-white mt-2 mb-2">{spirit.name}</h3>
+                    <p className="text-gray-500 text-sm mb-4">{spirit.description}</p>
+                    
                     <div className="flex items-center justify-between pt-4 border-t border-gray-800">
                       <div>
-                        <span className="text-2xl font-semibold text-white">ETB {product.price}</span>
+                        <span className="text-2xl font-bold text-white">ETB {spirit.price.toLocaleString()}</span>
                       </div>
-                      <Link
-                        href={`/shop/${product.id}`}
-                        className="flex items-center gap-2 text-sm text-[#c9a962] hover:text-[#e8d5a3] transition-colors"
-                      >
-                        View Details <ArrowRight size={16} />
+                      <Link href="/shop" className="flex items-center gap-1 text-amber-500 text-sm hover:text-amber-400 transition-colors">
+                        Add to Cart
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
                       </Link>
                     </div>
                   </div>
@@ -288,30 +128,6 @@ export default function SpiritsPage() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-[#080808]">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass rounded-3xl p-12 md:p-16 text-center border border-[rgba(201,169,98,0.1)]"
-          >
-            <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl mb-6">
-              Experience the <span className="gold-gradient">Heisberg</span> Taste
-            </h2>
-            <p className="text-gray-400 max-w-xl mx-auto mb-8">
-              The taste that makes you feel awesome. Visit us or find Heisberg at a retailer near you.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#c9a962] to-[#e8d5a3] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-300"
-            >
-              Find a Retailer <ArrowRight size={18} />
-            </Link>
-          </motion.div>
         </div>
       </section>
     </div>

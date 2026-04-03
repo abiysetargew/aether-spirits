@@ -1,102 +1,115 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function AgeVerification() {
-  const [isVerified, setIsVerified] = useState(false);
-  const [showModal, setShowModal] = useState(true);
-
   useEffect(() => {
     const verified = sessionStorage.getItem('age-verified');
-    if (verified === 'true') {
-      setIsVerified(true);
-      setShowModal(false);
+    if (verified !== 'true') {
+      const modal = document.createElement('div');
+      modal.id = 'age-modal';
+      modal.style.cssText = `
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      `;
+      
+      modal.innerHTML = `
+        <div style="
+          max-width: 500px;
+          width: 100%;
+          background: linear-gradient(135deg, #0a0a0a, #111);
+          border: 1px solid rgba(201,169,98,0.3);
+          border-radius: 24px;
+          padding: 48px;
+          text-align: center;
+        ">
+          <div style="
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            border: 2px solid #c9a962;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+          ">🍷</div>
+          
+          <h1 style="
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #e8d5a3, #c9a962, #8b7355);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          ">ETHO BEVERAGES</h1>
+          
+          <p style="color: #c9a962; font-size: 12px; letter-spacing: 0.3em; margin-bottom: 32px;">LUXURY SPIRITS</p>
+          
+          <h2 style="color: #fff; font-size: 24px; font-weight: 300; margin-bottom: 16px;">
+            Age Verification Required
+          </h2>
+          
+          <p style="color: #888; font-size: 14px; line-height: 1.7; margin-bottom: 32px;">
+            You must be 21 years of age or older to enter this website.
+          </p>
+          
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <button id="age-yes" style="
+              padding: 16px 40px;
+              background: linear-gradient(135deg, #c9a962, #e8d5a3);
+              border: none;
+              border-radius: 8px;
+              color: #000;
+              font-weight: 600;
+              font-size: 14px;
+              letter-spacing: 0.1em;
+              cursor: pointer;
+              transition: all 0.3s;
+            ">I AM 21+</button>
+            
+            <button id="age-no" style="
+              padding: 16px 40px;
+              background: transparent;
+              border: 1px solid #444;
+              border-radius: 8px;
+              color: #888;
+              font-weight: 500;
+              font-size: 14px;
+              letter-spacing: 0.1em;
+              cursor: pointer;
+              transition: all 0.3s;
+            ">UNDER 21</button>
+          </div>
+          
+          <p style="color: #444; font-size: 11px; margin-top: 24px;">
+            Please drink responsibly.
+          </p>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      document.getElementById('age-yes')?.addEventListener('click', () => {
+        sessionStorage.setItem('age-verified', 'true');
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.5s';
+        setTimeout(() => modal.remove(), 500);
+      });
+      
+      document.getElementById('age-no')?.addEventListener('click', () => {
+        window.location.href = 'https://www.google.com';
+      });
     }
   }, []);
-
-  const handleVerify = (isOfAge: boolean) => {
-    if (isOfAge) {
-      sessionStorage.setItem('age-verified', 'true');
-      setIsVerified(true);
-      setShowModal(false);
-    } else {
-      window.location.href = 'https://www.google.com';
-    }
-  };
-
-  return (
-    <AnimatePresence>
-      {showModal && !isVerified && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[10000] bg-black flex items-center justify-center p-4"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black" />
-          
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="relative z-10 max-w-lg w-full"
-          >
-            <div className="glass-strong rounded-2xl p-12 text-center border border-[rgba(201,169,98,0.2)]">
-              <motion.div
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl gold-gradient mb-2">
-                  HEISBERG
-                </h1>
-                <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-8">
-                  Premium Ethiopian Beer
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.7 }}
-              >
-                <div className="w-20 h-20 mx-auto mb-8 rounded-full border-2 border-[#c9a962] flex items-center justify-center">
-                  <span className="text-4xl">🔞</span>
-                </div>
-                
-                <h2 className="font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-white mb-4">
-                  Age Verification Required
-                </h2>
-                <p className="text-gray-400 mb-8 leading-relaxed">
-                  You must be 21 years of age or older to enter this website. 
-                  By entering, you agree to our Terms of Service and Privacy Policy.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button
-                    onClick={() => handleVerify(true)}
-                    className="px-10 py-4 bg-gradient-to-r from-[#c9a962] via-[#e8d5a3] to-[#c9a962] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_30px_rgba(201,169,98,0.5)] transition-all duration-300"
-                  >
-                    I am 21+
-                  </button>
-                  <button
-                    onClick={() => handleVerify(false)}
-                    className="px-10 py-4 border border-gray-600 text-gray-400 font-medium tracking-wider uppercase rounded hover:border-gray-400 hover:text-white transition-all duration-300"
-                  >
-                    Under 21
-                  </button>
-                </div>
-
-                <p className="text-gray-600 text-xs mt-8">
-                  Please drink responsibly. Do not share with minors.
-                </p>
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+  
+  return null;
 }

@@ -53,3 +53,20 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.gold-gradient {
+  background: linear-gradient(135deg, #e8d5a3 0%, #c9a962 50%, #8b7355 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+  backdrop-filter: blur(20px);
+}
+
+.cursor-glow {
+  pointer-events: none;
+  mix-blend-mode: screen;
+}

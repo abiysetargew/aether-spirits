@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import AgeVerification from "@/components/AgeVerification";
 import Footer from "@/components/Footer";
+import CursorGlow from "@/components/CursorGlow";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,9 +23,9 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Heisberg Beer | Premium Ethiopian Craft Beer",
-  description: "Discover Heisberg premium craft beers brewed in Addis Ababa, Ethiopia. The taste that makes you feel awesome.",
-  keywords: ["Ethiopian beer", "craft beer", "Heisberg", "premium beer", "Addis Ababa"],
+  title: "Ethio Beverages | Premium Ethiopian Spirits",
+  description: "Ethiopia's premier luxury spirits manufacturer. Crafting exceptional gin, cognac, and signature blends from Addis Ababa.",
+  keywords: ["Ethiopian spirits", "Ethiopian gin", "Ethiopian cognac", "Ethio Beverages", "luxury spirits", "Addis Ababa"],
 };
 
 export default function RootLayout({
@@ -35,9 +36,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${cormorant.variable}`}>
       <head>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍺</text></svg>" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥃</text></svg>" />
       </head>
       <body style={{ margin: 0, padding: 0, backgroundColor: '#030303', color: '#fafafa', fontFamily: 'system-ui, -apple-system, sans-serif', minHeight: '100vh', overflowX: 'hidden' }}>
+        <CursorGlow />
         <AgeVerification />
         <Navigation />
         <main>{children}</main>
