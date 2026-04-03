@@ -1,12 +1,11 @@
 'use client';
+'use client';
 // @ts-nocheck
 
 import { useRef } from 'react';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Environment, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
-
-extend(THREE);
 
 function Bottle() {
   const meshRef = useRef<THREE.Group>(null);
