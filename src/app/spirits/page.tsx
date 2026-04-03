@@ -132,8 +132,8 @@ export default function SpiritsPage() {
 
   const filteredProducts = products.filter((product) => {
     const categoryMatch = activeCategory === 'All' || product.category === activeCategory;
-    const subcategoryMatch = activeSubcategory === 'All' || product.subcategory === subcategoryMatch;
-    return categoryMatch && (activeSubcategory === 'All' || product.subcategory === activeSubcategory);
+    const subcategoryMatch = activeSubcategory === 'All' || product.subcategory === activeSubcategory;
+    return categoryMatch && subcategoryMatch;
   });
 
   return (
