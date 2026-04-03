@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshDistortionMaterial, Environment, PerspectiveCamera } from '@react-three/drei';
+import { Float, MeshDistortMaterial, Environment, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
 function Bottle() {
@@ -19,7 +19,7 @@ function Bottle() {
       <group ref={meshRef}>
         <mesh position={[0, 0, 0]}>
           <cylinderGeometry args={[0.8, 1, 4, 32]} />
-          <MeshDistortionMaterial
+          <MeshDistortMaterial
             color="#c9a962"
             distort={0.1}
             speed={2}
