@@ -6,20 +6,11 @@ import Link from 'next/link';
 import { Menu, X, ChevronDown, ShoppingBag, Search } from 'lucide-react';
 
 const navLinks = [
-  {
-    title: 'Our Spirits',
-    href: '/spirits',
-    submenu: [
-      { title: 'Gin Collection', href: '/spirits/gin' },
-      { title: 'Cognac Reserve', href: '/spirits/cognac' },
-      { title: 'Signature Blends', href: '/spirits/blends' },
-      { title: 'Limited Editions', href: '/spirits/limited' },
-    ],
-  },
+  { title: 'Our Beers', href: '/spirits' },
   { title: 'Distillery', href: '/distillery' },
   { title: 'Heritage', href: '/heritage' },
-  { title: 'Cocktails', href: '/cocktails' },
   { title: 'Shop', href: '/shop' },
+  { title: 'Contact', href: '/contact' },
 ];
 
 export default function Navigation() {
