@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const spirits = [
   { id: 1, name: 'ETHO Signature Gin', type: 'Gin', subType: 'London Dry', abv: '47%', description: 'Our flagship gin distilled with Ethiopian juniper and 12 rare botanicals.', price: 2500, badge: 'Bestseller' },
