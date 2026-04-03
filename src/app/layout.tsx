@@ -4,7 +4,6 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import AgeVerification from "@/components/AgeVerification";
 import Footer from "@/components/Footer";
-import CursorGlow from "@/components/CursorGlow";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,17 +33,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${cormorant.variable}`}>
       <head>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍺</text></svg>" />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} ${cormorant.variable} min-h-full bg-[#030303] text-white antialiased`}>
-        <CursorGlow />
+      <body style={{ margin: 0, padding: 0, backgroundColor: '#030303', color: '#fafafa', fontFamily: 'system-ui, -apple-system, sans-serif', minHeight: '100vh', overflowX: 'hidden' }}>
         <AgeVerification />
         <Navigation />
         <main>{children}</main>
         <Footer />
-        <div className="noise-overlay" />
       </body>
     </html>
   );

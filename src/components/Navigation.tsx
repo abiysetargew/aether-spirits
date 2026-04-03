@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { Menu, X, ChevronDown, ShoppingBag, Search } from 'lucide-react';
 
 const navLinks = [
   { title: 'Our Beers', href: '/spirits' },
@@ -16,7 +14,6 @@ const navLinks = [
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,123 +25,114 @@ export default function Navigation() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'glass-strong py-4' : 'bg-transparent py-6'
-        }`}
+      <nav
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          padding: isScrolled ? '16px 24px' : '24px 24px',
+          background: isScrolled ? 'rgba(10, 10, 10, 0.95)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(20px)' : 'none',
+          transition: 'all 0.5s',
+          borderBottom: isScrolled ? '1px solid rgba(201,169,98,0.1)' : 'none'
+        }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <motion.div
-              whileHover={{ rotate: 180 }}
-              transition={{ duration: 0.5 }}
-              className="w-10 h-10 border-2 border-[#c9a962] rounded-full flex items-center justify-center"
-            >
-              <span className="text-[#c9a962] font-bold text-lg">EB</span>
-            </motion.div>
-            <div>
-              <h1 className="font-[family-name:var(--font-playfair)] text-2xl tracking-wider gold-gradient">
-                HEISBERG
-              </h1>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+            <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #c9a962', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ color: '#c9a962', fontWeight: 'bold', fontSize: '16px' }}>EB</span>
             </div>
+            <span style={{ background: 'linear-gradient(135deg, #e8d5a3, #c9a962, #8b7355)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontSize: '24px', fontWeight: 'bold', letterSpacing: '0.1em' }}>
+              HEISBERG
+            </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Desktop Navigation */}
+          <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }} className="desktop-nav">
             {navLinks.map((link) => (
-              <div
+              <Link
                 key={link.title}
-                className="relative"
-                onMouseEnter={() => link.submenu && setActiveSubmenu(link.title)}
-                onMouseLeave={() => setActiveSubmenu(null)}
+                href={link.href}
+                style={{
+                  color: '#d1d5db',
+                  fontSize: '14px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  textDecoration: 'none',
+                  transition: 'color 0.3s',
+                  padding: '8px 0'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#c9a962'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#d1d5db'}
               >
-                <Link
-                  href={link.href}
-                  className="flex items-center gap-1 text-sm tracking-wider uppercase text-gray-300 hover:text-[#c9a962] transition-colors duration-300 py-2"
-                >
-                  {link.title}
-                  {link.submenu && <ChevronDown size={14} />}
-                </Link>
-
-                <AnimatePresence>
-                  {link.submenu && activeSubmenu === link.title && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute top-full left-0 pt-4"
-                    >
-                      <div className="glass-strong rounded-xl p-6 min-w-[200px] border border-[rgba(201,169,98,0.1)]">
-                        {link.submenu.map((item) => (
-                          <Link
-                            key={item.title}
-                            href={item.href}
-                            className="block py-2 text-sm text-gray-300 hover:text-[#c9a962] transition-colors duration-300"
-                          >
-                            {item.title}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                {link.title}
+              </Link>
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-6">
-            <button className="text-gray-400 hover:text-[#c9a962] transition-colors">
-              <Search size={20} />
-            </button>
-            <button className="relative text-gray-400 hover:text-[#c9a962] transition-colors">
-              <ShoppingBag size={20} />
-              <span className="absolute -top-2 -right-2 w-5 h-5 bg-[#c9a962] text-black text-xs rounded-full flex items-center justify-center font-bold">
-                0
-              </span>
-            </button>
-          </div>
-
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-white"
+            style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '8px', display: 'none' }}
+            className="mobile-menu-btn"
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {isMobileMenuOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </>
+              )}
+            </svg>
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-40 lg:hidden"
-          >
-            <div className="absolute inset-0 bg-black/95" />
-            <div className="relative h-full flex flex-col justify-center items-center gap-8">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-[family-name:var(--font-playfair)] text-3xl text-white hover:text-[#c9a962] transition-colors"
-                  >
-                    {link.title}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 40,
+          background: 'rgba(0,0,0,0.95)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '32px'
+        }}>
+          {navLinks.map((link) => (
+            <Link
+              key={link.title}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{
+                color: 'white',
+                fontSize: '32px',
+                textDecoration: 'none',
+                fontWeight: 'bold'
+              }}
+            >
+              {link.title}
+            </Link>
+          ))}
+        </div>
+      )}
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .mobile-menu-btn { display: block !important; }
+        }
+      `}</style>
     </>
   );
 }

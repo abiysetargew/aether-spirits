@@ -1,12 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Play, Star, Award, Wine, Globe, ArrowUpRight } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-const Scene3D = dynamic(() => import('@/components/Scene3D'), { ssr: false });
 
 const featuredProducts = [
   {
@@ -43,301 +40,213 @@ const stats = [
 ];
 
 export default function HomePage() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
 
   return (
-    <div ref={containerRef} className="relative">
-      <section className="relative h-screen overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#0a0a0a] to-[#0a0a0a]" />
+    <div style={{ backgroundColor: '#030303', color: '#fafafa', minHeight: '100vh' }}>
+      {/* Hero Section */}
+      <section style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #050505, #0a0a0a, #0a0a0a)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(201,169,98,0.1) 0%, transparent 70%)' }} />
         
-        <motion.div 
-          style={{ y, opacity }}
-          className="absolute inset-0"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,169,98,0.1)_0%,transparent_70%)]" />
-        </motion.div>
+        <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '48px', paddingTop: '120px' }}>
+          {/* Text Content */}
+          <div style={{ textAlign: 'center', maxWidth: '800px' }}>
+            <p style={{ color: '#c9a962', fontSize: '14px', letterSpacing: '0.4em', textTransform: 'uppercase', marginBottom: '16px' }}>
+              Est. 2021 • Addis Ababa
+            </p>
+            <h1 style={{ fontSize: 'clamp(48px, 10vw, 96px)', fontWeight: 'bold', marginBottom: '24px', lineHeight: 1.1 }}>
+              <span style={{ background: 'linear-gradient(135deg, #e8d5a3 0%, #c9a962 50%, #8b7355 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                HEISBERG
+              </span>
+              <br />
+              <span style={{ fontSize: 'clamp(32px, 6vw, 64px)', color: 'white' }}>Beer</span>
+            </h1>
+            <p style={{ color: '#9ca3af', fontSize: '18px', lineHeight: 1.7, marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
+              Ethiopia&apos;s premium craft beer, brewed with passion in Addis Ababa. 
+              Born from Ethiopian highlands, crafted for the world.
+            </p>
+            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link href="/spirits" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '16px 32px', background: 'linear-gradient(to right, #c9a962, #e8d5a3, #c9a962)', color: '#000', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: '8px', textDecoration: 'none' }}>
+                Explore Beers <ArrowRight size={18} />
+              </Link>
+              <Link href="/heritage" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '16px 32px', border: '1px solid rgba(201,169,98,0.5)', color: '#c9a962', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: '8px', textDecoration: 'none' }}>
+                <Play size={16} /> Our Story
+              </Link>
+            </div>
+          </div>
+          
+          {/* Hero Image */}
+          <motion.div
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            style={{ position: 'relative' }}
+          >
+            <img 
+              src="https://ethiobeverages.com/wp-content/uploads/2025/09/ber-brown.png"
+              alt="Heisberg Beer"
+              style={{ height: '400px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 0 40px rgba(201,169,98,0.3))' }}
+            />
+            <div style={{ position: 'absolute', bottom: '-40px', left: '50%', transform: 'translateX(-50%)', width: '200px', height: '200px', background: 'rgba(201,169,98,0.1)', borderRadius: '50%', filter: 'blur(60px)' }} />
+          </motion.div>
+          
+          {/* Scroll indicator */}
+          <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }} style={{ position: 'absolute', bottom: '40px' }}>
+            <ChevronDown size={32} color="#c9a962" />
+          </motion.div>
+        </div>
+      </section>
 
-        <div className="relative z-10 h-full flex flex-col lg:flex-row items-center">
-          <div className="w-full lg:w-1/2 px-6 lg:px-20 pt-32 lg:pt-0">
+      {/* Stats Section */}
+      <section style={{ padding: '96px 24px', backgroundColor: '#050505' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px', textAlign: 'center' }}>
+          {stats.map((stat, index) => (
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="max-w-xl"
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
             >
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7 }}
-                className="text-[#c9a962] text-sm tracking-[0.4em] uppercase mb-4"
-              >
-                Est. 2021 • Addis Ababa
-              </motion.p>
-              
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 }}
-                className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl lg:text-8xl mb-6 leading-none"
-              >
-                <span className="gold-gradient">HEISBERG</span>
-                <br />
-                <span className="text-white text-4xl md:text-5xl lg:text-6xl">Beer</span>
-              </motion.h1>
-              
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.1 }}
-                className="text-gray-400 text-lg mb-8 leading-relaxed"
-              >
-                Ethiopia&apos;s premium craft beer, brewed with passion in Addis Ababa. 
-                Born from Ethiopian highlands, crafted for the world. The taste that makes you feel awesome.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3 }}
-                className="flex flex-wrap gap-4"
-              >
-                <Link
-                  href="/spirits"
-                  className="group px-8 py-4 bg-gradient-to-r from-[#c9a962] via-[#e8d5a3] to-[#c9a962] text-black font-semibold tracking-wider uppercase rounded flex items-center gap-2 hover:shadow-[0_0_40px_rgba(201,169,98,0.4)] transition-all duration-500"
-                >
-                  Explore Beers
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  href="/distillery"
-                  className="group px-8 py-4 border border-[rgba(201,169,98,0.5)] text-[#c9a962] font-medium tracking-wider uppercase rounded flex items-center gap-2 hover:bg-[rgba(201,169,98,0.1)] transition-all duration-300"
-                >
-                  <Play size={16} />
-                  Our Story
-                </Link>
-              </motion.div>
+              <div style={{ fontSize: 'clamp(36px, 5vw, 48px)', fontWeight: 'bold', background: 'linear-gradient(135deg, #e8d5a3, #c9a962, #8b7355)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: '8px' }}>
+                {stat.value}
+              </div>
+              <div style={{ color: '#6b7280', fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                {stat.label}
+              </div>
             </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
-            className="w-full lg:w-1/2 h-[50vh] lg:h-full"
-          >
-            <Scene3D />
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <ChevronDown size={32} className="text-[#c9a962]" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      <section className="py-24 bg-[#050505]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl gold-gradient mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-500 text-sm uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
 
-      <section className="py-24 bg-[#080808]">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Products Section */}
+      <section style={{ padding: '96px 24px', backgroundColor: '#080808' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            style={{ textAlign: 'center', marginBottom: '64px' }}
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">The Collection</p>
-            <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl mb-6">
-              Our <span className="gold-gradient">Premium</span> Beers
+            <p style={{ color: '#c9a962', fontSize: '14px', letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '16px' }}>The Collection</p>
+            <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', marginBottom: '24px' }}>
+              Our <span style={{ background: 'linear-gradient(135deg, #e8d5a3, #c9a962)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Premium</span> Beers
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Crafted with the finest ingredients from Ethiopian highlands. Each bottle delivers consistent quality and exceptional taste.
+            <p style={{ color: '#9ca3af', maxWidth: '640px', margin: '0 auto' }}>
+              Crafted with the finest ingredients from Ethiopian highlands.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
             {featuredProducts.map((product, index) => (
               <motion.div
                 key={product.name}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="group relative"
+                onMouseEnter={() => setHoveredProduct(index)}
+                onMouseLeave={() => setHoveredProduct(null)}
+                style={{
+                  background: 'rgba(255,255,255,0.03)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '16px',
+                  padding: '32px',
+                  transition: 'all 0.3s',
+                  transform: hoveredProduct === index ? 'translateY(-8px)' : 'none',
+                  boxShadow: hoveredProduct === index ? '0 20px 40px rgba(201,169,98,0.1)' : 'none'
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-[rgba(201,169,98,0.1)] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="glass rounded-2xl p-8 relative overflow-hidden">
-                  <div className="h-64 bg-gradient-to-b from-[rgba(201,169,98,0.05)] to-transparent rounded-xl mb-6 flex items-center justify-center">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="h-full w-auto object-contain"
-                    />
-                  </div>
-
-                  <div className="flex items-center gap-2 mb-2">
-                    <Star size={14} className="text-[#c9a962]" fill="#c9a962" />
-                    <span className="text-[#c9a962] text-sm">{product.type}</span>
-                  </div>
-
-                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white mb-2">
-                    {product.name}
-                  </h3>
-                  
-                  <p className="text-gray-500 text-sm mb-4">
-                    {product.description}
-                  </p>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#c9a962] text-xl font-semibold">{product.price}</span>
-                    <Link
-                      href={`/shop/${product.name.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="flex items-center gap-2 text-sm text-gray-400 hover:text-[#c9a962] transition-colors"
-                    >
-                      View Details <ArrowUpRight size={16} />
-                    </Link>
-                  </div>
+                <div style={{ height: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    style={{ height: '100%', width: 'auto', objectFit: 'contain', transition: 'transform 0.3s', transform: hoveredProduct === index ? 'scale(1.05)' : 'none' }}
+                  />
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <Star size={14} color="#c9a962" fill="#c9a962" />
+                  <span style={{ color: '#c9a962', fontSize: '12px' }}>{product.type}</span>
+                </div>
+                <h3 style={{ fontSize: '24px', color: 'white', marginBottom: '8px' }}>{product.name}</h3>
+                <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '16px' }}>{product.description}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                  <span style={{ color: '#c9a962', fontSize: '20px', fontWeight: 600 }}>{product.price}</span>
+                  <Link href="/spirits" style={{ color: '#9ca3af', fontSize: '14px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    View <ArrowUpRight size={16} />
+                  </Link>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <Link
-              href="/spirits"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-[rgba(201,169,98,0.3)] text-[#c9a962] font-medium tracking-wider uppercase rounded hover:bg-[rgba(201,169,98,0.1)] transition-all duration-300"
-            >
+          <div style={{ textAlign: 'center', marginTop: '48px' }}>
+            <Link href="/spirits" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '16px 32px', border: '1px solid rgba(201,169,98,0.3)', color: '#c9a962', textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: '8px', textDecoration: 'none' }}>
               View All Beers <ArrowRight size={18} />
             </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-[#050505] relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(201,169,98,0.05)] via-transparent to-[rgba(201,169,98,0.05)]" />
-        
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Heritage</p>
-              <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-6 leading-tight">
-                Born in <span className="gold-gradient">Ethiopia</span>
-              </h2>
-              <p className="text-gray-400 mb-6 leading-relaxed">
-                Founded in October 2021 by visionary entrepreneurs <strong className="text-white">Sisay H.W</strong> and <strong className="text-white">Alula Setarge</strong>, 
-                Ethio Beverages was born in the heart of Addis Ababa with a simple mission: to bring the world 
-                exceptional beverages that capture Ethiopian essence.
-              </p>
-              <p className="text-gray-400 mb-8 leading-relaxed">
-                From our state-of-the-art facility in the Industrial Zone, Akaki Kality, we craft premium beers 
-                that honor Ethiopian heritage while meeting international quality standards.
-              </p>
-              <Link
-                href="/heritage"
-                className="inline-flex items-center gap-2 text-[#c9a962] hover:text-[#e8d5a3] transition-colors"
-              >
-                Discover Our Story <ArrowRight size={18} />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="aspect-square rounded-2xl overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] via-[#111] to-[#0a0a0a] flex items-center justify-center relative">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(201,169,98,0.2),transparent_60%)]" />
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto mb-4 rounded-full border-2 border-[rgba(201,169,98,0.5)] flex items-center justify-center">
-                      <span className="font-[family-name:var(--font-playfair)] text-5xl gold-gradient">EB</span>
-                    </div>
-                    <p className="text-[#c9a962] tracking-widest">ETHIO BEVERAGES</p>
-                    <p className="text-gray-500 text-sm mt-2">Addis Ababa, Ethiopia</p>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 border border-[rgba(201,169,98,0.2)] rounded-xl" />
-            </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#080808]">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Heritage Section */}
+      <section style={{ padding: '96px 24px', backgroundColor: '#050505', position: 'relative' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '64px', alignItems: 'center' }}>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <p style={{ color: '#c9a962', fontSize: '14px', letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '16px' }}>Heritage</p>
+            <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', marginBottom: '24px', lineHeight: 1.2 }}>
+              Born in <span style={{ background: 'linear-gradient(135deg, #e8d5a3, #c9a962)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Ethiopia</span>
+            </h2>
+            <p style={{ color: '#9ca3af', marginBottom: '16px', lineHeight: 1.7 }}>
+              Founded in October 2021 by visionary entrepreneurs <strong style={{ color: 'white' }}>Sisay H.W</strong> and <strong style={{ color: 'white' }}>Alula Setarge</strong>, Ethio Beverages was born in the heart of Addis Ababa.
+            </p>
+            <p style={{ color: '#9ca3af', marginBottom: '32px', lineHeight: 1.7 }}>
+              From our state-of-the-art facility in the Industrial Zone, Akaki Kality, we craft premium beers that honor Ethiopian heritage.
+            </p>
+            <Link href="/heritage" style={{ color: '#c9a962', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              Discover Our Story <ArrowRight size={18} />
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            style={{ textAlign: 'center', padding: '48px', background: 'linear-gradient(135deg, #1a1a1a, #111)', borderRadius: '16px' }}
+          >
+            <div style={{ width: '120px', height: '120px', margin: '0 auto 24px', borderRadius: '50%', border: '2px solid rgba(201,169,98,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontSize: '48px', background: 'linear-gradient(135deg, #e8d5a3, #c9a962)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: 'bold' }}>EB</span>
+            </div>
+            <p style={{ color: '#c9a962', letterSpacing: '0.2em', marginBottom: '8px' }}>ETHIO BEVERAGES</p>
+            <p style={{ color: '#6b7280', fontSize: '14px' }}>Addis Ababa, Ethiopia</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section style={{ padding: '96px 24px', backgroundColor: '#080808' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            style={{ textAlign: 'center', marginBottom: '64px' }}
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Craftsmanship</p>
-            <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-6xl mb-6">
-              The Heisberg <span className="gold-gradient">Difference</span>
+            <p style={{ color: '#c9a962', fontSize: '14px', letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '16px' }}>Craftsmanship</p>
+            <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)' }}>
+              The Heisberg <span style={{ background: 'linear-gradient(135deg, #e8d5a3, #c9a962)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Difference</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', textAlign: 'center' }}>
             {[
-              {
-                icon: Wine,
-                title: 'Premium Ingredients',
-                description: 'Hand-selected Ethiopian barley and hops from the highlands.',
-              },
-              {
-                icon: Award,
-                title: 'Artisan Brewing',
-                description: 'Small-batch brewing by master brewers with decades of experience.',
-              },
-              {
-                icon: Globe,
-                title: 'International Quality',
-                description: 'Meeting global standards while celebrating Ethiopian character.',
-              },
+              { icon: Wine, title: 'Premium Ingredients', desc: 'Hand-selected Ethiopian barley and hops from the highlands.' },
+              { icon: Award, title: 'Artisan Brewing', desc: 'Small-batch brewing by master brewers.' },
+              { icon: Globe, title: 'International Quality', desc: 'Meeting global standards while celebrating Ethiopian character.' },
             ].map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -345,50 +254,43 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="text-center p-8"
+                style={{ padding: '32px' }}
               >
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full border border-[rgba(201,169,98,0.3)] flex items-center justify-center">
-                  <feature.icon size={32} className="text-[#c9a962]" />
+                <div style={{ width: '80px', height: '80px', margin: '0 auto 24px', borderRadius: '50%', border: '1px solid rgba(201,169,98,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <feature.icon size={32} color="#c9a962" />
                 </div>
-                <h3 className="font-[family-name:var(--font-playfair)] text-xl text-white mb-4">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-500">
-                  {feature.description}
-                </p>
+                <h3 style={{ fontSize: '20px', color: 'white', marginBottom: '16px' }}>{feature.title}</h3>
+                <p style={{ color: '#6b7280' }}>{feature.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#050505] relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(201,169,98,0.02)] to-transparent" />
-        
-        <div className="max-w-7xl mx-auto px-6 relative">
+      {/* Newsletter Section */}
+      <section style={{ padding: '96px 24px', backgroundColor: '#050505' }}>
+        <div style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center"
           >
-            <p className="text-[#c9a962] text-sm tracking-[0.3em] uppercase mb-4">Newsletter</p>
-            <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl mb-6">
-              Join the <span className="gold-gradient">Heisberg</span> Family
+            <p style={{ color: '#c9a962', fontSize: '14px', letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '16px' }}>Newsletter</p>
+            <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', marginBottom: '24px' }}>
+              Join the <span style={{ background: 'linear-gradient(135deg, #e8d5a3, #c9a962)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Heisberg</span> Family
             </h2>
-            <p className="text-gray-400 max-w-xl mx-auto mb-8">
-              Be the first to know about new releases, exclusive offers, and the world of Ethiopian craft beer.
+            <p style={{ color: '#9ca3af', marginBottom: '32px' }}>
+              Be the first to know about new releases and exclusive offers.
             </p>
-            
-            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <form style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-6 py-4 bg-[#111] border border-[rgba(255,255,255,0.1)] rounded text-white placeholder-gray-500 focus:outline-none focus:border-[#c9a962] transition-colors"
+                style={{ flex: '1 1 250px', padding: '16px 24px', background: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'white', outline: 'none', minWidth: '200px' }}
               />
               <button
                 type="submit"
-                className="px-8 py-4 bg-gradient-to-r from-[#c9a962] to-[#e8d5a3] text-black font-semibold tracking-wider uppercase rounded hover:shadow-[0_0_30px_rgba(201,169,98,0.3)] transition-all duration-300"
+                style={{ padding: '16px 32px', background: 'linear-gradient(to right, #c9a962, #e8d5a3)', color: '#000', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: '8px', border: 'none', cursor: 'pointer' }}
               >
                 Subscribe
               </button>
